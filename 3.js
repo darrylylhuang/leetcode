@@ -8,7 +8,7 @@
  */
 var lengthOfLongestSubstring = function (s) {
   return lengthOfLongestSubstring1(s);
-  return lengthOfLongestSubstring2(s);
+  // return lengthOfLongestSubstring2(s);
 };
 
 /**
@@ -21,15 +21,14 @@ var lengthOfLongestSubstring1 = function (s) {
   let longest = 0;
   let current = 0;
   for (let i = 0; i < s.length; i++) {
-    if (seen[s[i]] === undefined) {
-      // i is the index where the letter s[i] was last seen
-    } else {
+    if (seen[s[i]] !== undefined) {
       if (current > longest) longest = current;
       if (lastSeen < seen[s[i]]) {
-        current -= seen[s[i]] + 1;
+        current -= seen[s[i]] - lastSeen;
         lastSeen = seen[s[i]];
       }
     }
+    // i is the index where the letter s[i] was last seen
     seen[s[i]] = i;
     current++;
   }
@@ -38,7 +37,7 @@ var lengthOfLongestSubstring1 = function (s) {
   return longest;
 };
 
-// INTUITION
+// INTUITION - RETURN STRING VERSION
 
 /**
  * @param {string} s
@@ -58,23 +57,21 @@ var findLongestSubstring = function (s) {
   let longestSubstring = "";
   let currentSubstring = "";
   for (let i = 0; i < s.length; i++) {
-    if (seen[s[i]] === undefined) {
-      // i is the index where the letter s[i] was last seen
-      seen[s[i]] = i;
-      currentSubstring += s[i];
-    } else {
+    if (seen[s[i]] !== undefined) {
       if (currentSubstring.length > longestSubstring.length)
         longestSubstring = currentSubstring;
       if (lastSeen < seen[s[i]]) {
-        currentSubstring = currentSubstring.slice(seen[s[i]] + 1);
+        currentSubstring = currentSubstring.slice(seen[s[i]] - lastSeen);
         lastSeen = seen[s[i]];
-        seen[s[i]] = i;
       }
-      currentSubstring += s[i];
-      seen[s[i]] = i;
     }
-    // console.log("curr", currentSubstring);
-    // console.log("long", longestSubstring);
+    // i is the index where the letter s[i] was last seen
+    seen[s[i]] = i;
+    currentSubstring += s[i];
+
+    // debugging
+    console.log("curr", currentSubstring);
+    console.log("long", longestSubstring);
   }
 
   if (currentSubstring.length > longestSubstring.length)
@@ -85,12 +82,12 @@ var findLongestSubstring = function (s) {
 var testCases = function () {
   let cases = [];
 
-  // cases.push(["abcabcbb", 3]);
-  // cases.push(["bbbbb", 1]);
-  // cases.push(["pwwkew", 3]);
-  // cases.push(["aab", 2]);
-  // cases.push(["dvdf", 3]);
-  // cases.push(["tmmzuxt", 5]);
+  cases.push(["abcabcbb", 3]);
+  cases.push(["bbbbb", 1]);
+  cases.push(["pwwkew", 3]);
+  cases.push(["aab", 2]);
+  cases.push(["dvdf", 3]);
+  cases.push(["tmmzuxt", 5]);
   cases.push(["bbtablud", 6]);
 
   cases.forEach((s) => test(s));
