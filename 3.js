@@ -7,8 +7,8 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function (s) {
-  // return lengthOfLongestSubstring1(s);
-  return lengthOfLongestSubstring2(s);
+  return lengthOfLongestSubstring1(s);
+  // return lengthOfLongestSubstring2(s);
 };
 
 /**
@@ -21,15 +21,14 @@ var lengthOfLongestSubstring1 = function (s) {
   let longest = 0;
   let current = 0;
   for (let i = 0; i < s.length; i++) {
-    if (seen[s[i]] === undefined) {
-      // i is the index where the letter s[i] was last seen
-    } else {
+    if (seen[s[i]] !== undefined) {
       if (current > longest) longest = current;
       if (lastSeen < seen[s[i]]) {
-        current -= seen[s[i]] + 1;
+        current -= seen[s[i]] - lastSeen;
         lastSeen = seen[s[i]];
       }
     }
+    // i is the index where the letter s[i] was last seen
     seen[s[i]] = i;
     current++;
   }
