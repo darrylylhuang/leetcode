@@ -4,7 +4,10 @@
  * @param {number[]} nums
  * @return {number}
  */
-var minSwaps = function (nums) {};
+var minSwaps = function (nums) {
+  // [0], [1], [0, 0], [0, 1], [1, 0], [1, 1]
+  if (nums.length < 3) return 0;
+};
 
 var testCases = function () {
   let cases = [];
