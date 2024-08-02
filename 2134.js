@@ -6,7 +6,8 @@
  */
 var minSwaps = function (nums) {
   // [0], [1], [0, 0], [0, 1], [1, 0], [1, 1]
-  if (nums.length < 3) return 0;
+  // Include len 3: array is circular
+  if (nums.length < 4) return 0;
 };
 
 var testCases = function () {
