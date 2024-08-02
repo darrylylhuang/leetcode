@@ -8,6 +8,23 @@ var minSwaps = function (nums) {
   // [0], [1], [0, 0], [0, 1], [1, 0], [1, 1]
   // Include len 3: array is circular
   if (nums.length < 4) return 0;
+  let swaps = 0;
+  const deatched1s = [];
+  for (let i = 0; i < nums.length; i++) {
+    // check neighbours
+    const curr = nums[i];
+    const prev = nums[i - 1];
+    const next = nums[i + 1];
+    // current 1 is detached
+    if (curr === 1 && prev === 0 && next === 0) deatched1s.push(i);
+    // attach a 1
+    else if (curr === 0 && deatched1s.length !== 0 && next === 1) {
+      nums[i] = 1;
+      nums[deatched1s.pop()] = 0;
+      swaps++;
+    }
+  }
+  return swaps;
 };
 
 var testCases = function () {
