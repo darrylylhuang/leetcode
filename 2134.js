@@ -9,6 +9,7 @@ var minSwaps = function (nums) {
   // Include len 3: array is circular
   if (nums.length < 4) return 0;
   let swaps = 0;
+  let attached = false;
   const deatched1s = [];
   for (let i = 0; i < nums.length; i++) {
     // check neighbours
@@ -16,7 +17,10 @@ var minSwaps = function (nums) {
     const prev = nums[i - 1];
     const next = nums[i + 1];
     // current 1 is detached
-    if (curr === 1 && prev === 0 && next === 0) deatched1s.push(i);
+    if (curr === 1 && prev === 0 && next === 0) {
+      deatched1s.push(i);
+      attached = false;
+    }
     // attach a 1
     else if (curr === 0 && deatched1s.length !== 0 && next === 1) {
       nums[i] = 1;
