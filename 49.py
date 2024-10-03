@@ -1,4 +1,20 @@
 # Anagram Groups
+class Solution:
+    def groupAnagrams(self, strs):
+        grouped_anagrams = dict()
+        for str in strs:
+            # a-z
+            char_count = [0] * 26
+            for char in str:
+                char_count[ord(char) - ord("a")] += 1
+            # lists cannot be keys
+            char_count = tuple(char_count)
+            if char_count in grouped_anagrams:
+                grouped_anagrams[char_count].append(str)
+            else:
+                grouped_anagrams[char_count] = [str]
+        return grouped_anagrams.values()
+
 
 class Solution1(object):
     # Complexity is O(n^2) because it's possible for there to be 0 anagram pairs
