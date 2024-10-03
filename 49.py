@@ -1,10 +1,24 @@
 # Anagram Groups
 
 class Solution:
+    # Complexity is O(n^2) because it's possible for there to be 0 anagram pairs
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         grouped_anagrams = []
-        while len(strs) > 1:
-           break
+        # loop through every string in the list
+        for i in range(len(strs)):
+            # Base Case, i = 0
+            # there are no groups
+            # therefore found == False
+            # and the first group is added
+            found = False
+            for group in grouped_anagrams:
+                if self.isAnagram(strs[i], group[0]):
+                    # current string has found a group of anagram equivalents
+                    found = True
+                    group.append(strs[i])
+            # create a new group of anagrams
+            if not found:
+                grouped_anagrams.append([strs[i]])
         return grouped_anagrams
 
     def isAnagram(self, s, t):
