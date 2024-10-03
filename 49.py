@@ -1,8 +1,12 @@
 # Anagram Groups
 
-class Solution:
+class Solution(object):
     # Complexity is O(n^2) because it's possible for there to be 0 anagram pairs
-    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    def groupAnagrams(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: List[List[str]]
+        """
         grouped_anagrams = []
         # loop through every string in the list
         for i in range(len(strs)):
