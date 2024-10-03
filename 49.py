@@ -1,3 +1,5 @@
+# Anagram Groups
+
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         grouped_anagrams = []
