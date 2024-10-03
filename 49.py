@@ -1,6 +1,6 @@
 # Anagram Groups
 
-class Solution(object):
+class Solution1(object):
     # Complexity is O(n^2) because it's possible for there to be 0 anagram pairs
     def groupAnagrams(self, strs):
         """
