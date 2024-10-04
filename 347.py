@@ -8,6 +8,7 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
+        # of the form {key:count} where key is the original number
         nums_count = dict()
         for num in nums:
             if num not in nums_count:
@@ -15,16 +16,6 @@ class Solution(object):
             else:
                 nums_count[num] += 1
 
-        # take the top k counts
-        top_counts = sorted(nums_count.values())[-k:]
-
-        top_k = []
-        # go through the dictionary and find the keys (original numbers) that correspond to these highest counts
-        for key in nums_count:
-            if len(top_counts) == 0:
-                break
-            if nums_count[key] == top_counts[-1]:
-                top_k.append(key)
-                top_counts.pop()
-
-        return top_k
+        # take the top k counts by sorting and add the corresponding keys to the list
+        return [x for x, y in sorted(
+            nums_count.items(), key=lambda item: item[1])][-k:]
