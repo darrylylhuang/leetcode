@@ -15,12 +15,8 @@ class Solution(object):
             else:
                 nums_count[num] += 1
 
-        # these are the counts for the most frequent numbers
-        top_counts = nums_count.values()
-        # sort them
-        top_counts.sort()
         # take the top k counts
-        top_counts = top_counts[-k:]
+        top_counts = sorted(nums_count.values())[-k:]
 
         top_k = []
         # go through the dictionary and find the keys (original numbers) that correspond to these highest counts
