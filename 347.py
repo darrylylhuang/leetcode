@@ -8,7 +8,7 @@ class Solution(object):
         :type k: int
         :rtype: List[int]
         """
-        # of the form {key:count} where key is the original number
+        # {number:count}
         nums_count = dict()
         for num in nums:
             if num not in nums_count:
@@ -16,6 +16,6 @@ class Solution(object):
             else:
                 nums_count[num] += 1
 
-        # take the top k counts by sorting and add the corresponding keys to the list
+        # take the k top values by sorting and add the corresponding keys to the list
         return [x for x, y in sorted(
             nums_count.items(), key=lambda item: item[1])][-k:]
