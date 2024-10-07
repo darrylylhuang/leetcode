@@ -1,17 +1,21 @@
 # Encode and Decode Strings
 class Solution:
-    """
-    @param: strs: a list of strings
-    @return: encodes a list of strings to a single string.
-    """
     def encode(self, strs):
-        return
-        # write your code here
+        """
+        @param: strs: a list of strings
+        @return: encodes a list of strings to a single string.
+        """
+        encoded = ""
+        for i in range(len(strs)):
+            if i == len(strs) - 1:
+                encoded += strs[i]
+            else:
+                encoded += strs[i] + "\0"
+        return encoded.strip()
 
-    """
-    @param: str: A string
-    @return: decodes a single string to a list of strings
-    """
     def decode(self, str):
-        return
-        # write your code here
+        """
+        @param: str: A string
+        @return: decodes a single string to a list of strings
+        """
+        return str.split("\0")
