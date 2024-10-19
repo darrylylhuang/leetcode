@@ -5,9 +5,10 @@ class Solution:
         @param: strs: a list of strings
         @return: encodes a list of strings to a single string.
         """
+        # include a buffer string at the beginning that will be stripped
         encoded = str(len(strs))
         for i in range(len(strs)):
-            encoded += strs[i] + "\0"
+            encoded += "\0" + strs[i]
         return encoded
 
     def decode(self, str):
@@ -16,6 +17,4 @@ class Solution:
         @return: decodes a single string to a list of strings
         """
         decoded = str.split("\0")
-        if decoded[0] > len(decoded) - 1:
-            return decoded[1:-1]
         return decoded[1:]
