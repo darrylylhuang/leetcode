@@ -4,18 +4,17 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        products = [nums[0]]
+        products = [1]
         # prefix products
         # placeholders in solution space
-        for i in range(1, len(nums)):
-            products.append(nums[i] * products[i - 1])
+        # do not include the final element in the prefixes
+        for i in range(len(nums) - 1):
+            products.append(nums[i] * products[i])
         # postfix products
         # tracked as int
         postfix = 1
         for i in range(len(nums) - 1, -1, -1):
-            prefix = products[i-1]
-            if i == 0:
-                prefix = 1
-            products[i] = prefix * postfix
+            # products[i] = prefix * postfix
+            products[i] *= postfix
             postfix *= nums[i]
         return products
