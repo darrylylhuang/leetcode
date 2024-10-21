@@ -4,6 +4,8 @@ class Solution(object):
         :type board: List[List[str]]
         :rtype: bool
         """
+        columns = {x: set() for x in range(9)}
+
         for i in range(len(board)):
             row = board[i]
             current_row = set()
@@ -19,4 +21,12 @@ class Solution(object):
                     return False
                 else:
                     current_row.add(box)
+
+                # column duplicate
+                if box in columns[j]:
+                    return False
+                else:
+                    columns[j].add(box)
+
+        # default case
         return True
