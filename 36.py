@@ -19,3 +19,4 @@ class Solution(object):
                     return False
                 else:
                     current_row.add(box)
+        return True
