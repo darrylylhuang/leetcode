@@ -32,6 +32,7 @@ class Solution(object):
                 # map indices to the range of [0, 2]
                 # basically, we simulate a 3x3 as if it were represented by a single list
                 k = (i // 3) * 3 + (j // 3)
+                # mini-squares duplicate
                 if box in mini_squares[k]:
                     return False
                 else:
