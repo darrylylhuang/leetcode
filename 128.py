@@ -4,31 +4,33 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        all_sets = dict()
+        # con_lens stands for consecutive lengths
+        con_lens = dict()
         for num in nums:
-            if num in all_sets:
-                # num exists - three cases:
+            # don't need to do anything if a num already exists
+            if num not in con_lens:
+                # new num - four cases:
                 # 3. num - 1 exists AND num + 1 exists
-                if num - 1 in all_sets and num + 1 in all_sets:
-                    all_sets[num] = all_sets[num - 1].union(all_sets[num + 1])
-                    all_sets[num].add(num)
-                    # update the other two sets
-                # cases 1 and 2, num was added by one of its neighbours
+                if num - 1 in con_lens and num + 1 in con_lens:
+                    con_lens[num] = con_lens[num - 1] + con_lens[num + 1]
+                    con_lens[num] += 1
+                    con_lens[num - 1] = con_lens[num]
+                    con_lens[num + 1] = con_lens[num]
+                # 1. only num - 1 exists
+                elif num - 1 in con_lens:
+                    con_lens[num - 1] += 1
+                    con_lens[num] = con_lens[num - 1]
+                # 2. only num - 1 exists
+                elif num + 1 in con_lens:
+                    con_lens[num + 1] += 1
+                    con_lens[num] = con_lens[num + 1]
+                # 4. new num is an island
                 else:
-                    all_sets[num].add(num)
-                # in all cases, update the surrounding sets
-                all_sets[num - 1] = all_sets[num]
-                all_sets[num + 1] = all_sets[num]
-            else:
-                # num DNE which means adjacent numbers do not exist
-                new_set = {num}
-                all_sets[num] = new_set
-                all_sets[num + 1] = new_set
-                all_sets[num - 1] = new_set
+                    con_lens[num] = 1
 
-        largest_set = 0
-        for s in all_sets.values():
-            if len(s) > largest_set:
-                largest_set = len(s)
+        longest = 0
+        for length in con_lens.values():
+            if length > longest:
+                longest = length
 
-        return largest_set
+        return longest
