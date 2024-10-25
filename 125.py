@@ -4,16 +4,19 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        # p for palindrome
-        p = ""
-        for i in range(len(s)):
-            # strip non-alphanumeric characters
-            if s[i].isalnum():
-                # convert to lowercase
-                p += s[i].lower()
+        i = 0
+        j = len(s) - 1
+        while i < len(s) and j > -1:
+            # search right from start for alphanum
+            while i < len(s) - 1 and not s[i].isalnum():
+                i += 1
+            # search left from end for alphanum
+            while j > 0 and not s[j].isalnum():
+                j -= 1
 
-        # begin algorithm
-        for i in range(len(p)):
-            if p[i] != p[len(p) - 1 - i]:
+            # two alphanums found; compare
+            if s[i].lower() != s[j].lower():
                 return False
+            i += 1
+            j -= 1
         return True
