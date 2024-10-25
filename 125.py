@@ -15,7 +15,7 @@ class Solution(object):
                 j -= 1
 
             # two alphanums found; compare
-            if s[i] != s[j]:
+            if s[i].lower() != s[j].lower():
                 return False
             i += 1
             j -= 1
