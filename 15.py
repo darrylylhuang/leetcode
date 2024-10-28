@@ -12,9 +12,11 @@ class Solution(object):
             j = i + 1
             k = len(nums) - 1
             while j < k:
-                if nums[j] + nums[k] == nums[i]:
-                    solution.append([nums[i], nums[j], nums[k]])
                 if nums[j] + nums[k] > nums[i]:
                     k -= 1
                 if nums[j] + nums[k] < nums[i]:
                     j += 1
+                if nums[j] + nums[k] == nums[i]:
+                    solution.append([nums[i], nums[j], nums[k]])
+                    while j < k and nums[j] == nums[j + 1]:
+                        j += 1
