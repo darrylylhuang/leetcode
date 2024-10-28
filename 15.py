@@ -5,21 +5,16 @@ class Solution(object):
         :rtype: List[List[int]]
         """
         solution = []
+        nums.sort()
+        # fix a number -- nums[i]
         for i in range(len(nums)):
-            twoSum = self.twoSum(nums, -1 * nums[i])
-            if twoSum != []:
-                solution.append([nums[i], nums[twoSum[0]], nums[twoSum[1]]])
-        return solution
-
-    def twoSum(self, nums, target):
-        """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
-        """
-        differences = {}
-        for i in range(len(nums)):
-            if target - nums[i] in differences:
-                return [differences[target - nums[i]], i]
-            differences[nums[i]] = i
-        return []
+            # do a twoSum solution on the rest of the list
+            j = i + 1
+            k = len(nums) - 1
+            while j < k:
+                if nums[j] + nums[k] == nums[i]:
+                    solution.append([nums[i], nums[j], nums[k]])
+                if nums[j] + nums[k] > nums[i]:
+                    k -= 1
+                if nums[j] + nums[k] < nums[i]:
+                    j += 1
