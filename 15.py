@@ -17,7 +17,7 @@ class Solution(object):
                     k -= 1
                 if nums[j] + nums[k] < nums[i]:
                     j += 1
-                if nums[j] + nums[k] == nums[i]:
+                if nums[j] + nums[k] == -1 * nums[i]:
                     solution.append([nums[i], nums[j], nums[k]])
                     while j < k and nums[j] == nums[j + 1]:
                         j += 1
