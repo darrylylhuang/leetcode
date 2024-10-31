@@ -6,7 +6,8 @@ class Solution(object):
         """
         l, r = 0, 0
         trapped = 0
-        non_increasing_stack = []
+        # non-increasing monotonic stack
+        stack = []
 
         # find our first barrier
         while r < len(height) and height[r] == 0:
@@ -17,14 +18,18 @@ class Solution(object):
         l = r
 
         # TODO: find smaller valleys
+        # TODO: outer loop to repeat "large valley" procedure
 
-        # start looking for the right barrier
+        # start looking for the right barrier of a "large" valley
         while r < len(height) and height[r] < height[l]:
             r += 1
 
+        # large valley found
+        left_barrier = height[l]
+        l += 1
         while l < r:
+            trapped += left_barrier - height[l]
             l += 1
-            trapped += height[l]
 
         # we've reached the end of the list
         if l == len(height):
