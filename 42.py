@@ -6,12 +6,15 @@ class Solution(object):
         """
         l, r = 0, 0
         trapped = 0
-        # find our first left barrier
-        while l < len(height) and height[l] == 0:
-            l += 1
+        non_increasing_stack = []
 
-        # catch right pointer up to left pointer
-        r = l
+        # find our first barrier
+        while r < len(height) and height[r] == 0:
+            r += 1
+
+        # 1. height[0] == 0 : l == 0  < r
+        # 2. height[0] != 0 : l == 0 == r
+        l = r
 
         # TODO: find smaller valleys
 
