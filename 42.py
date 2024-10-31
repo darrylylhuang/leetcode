@@ -22,6 +22,8 @@ class Solution(object):
 
         # start looking for the right barrier of a "large" valley
         while r < len(height) and height[r] < height[l]:
+            if len(stack) == 0 or height[r] < stack[-1]:
+                stack.append()
             r += 1
 
         # large valley found
