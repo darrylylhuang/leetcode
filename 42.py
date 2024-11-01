@@ -20,28 +20,32 @@ class Solution(object):
         # start looking for more barriers
         r += 1
         while r < len(height):
+            # TODO: FIX STACK LOGIC
             # new trough found
             if len(stack) == 0 or height[r] < stack[-1][1]:
                 stack.append((r, height[r]))
 
             # new right barrier found
             if height[r] > stack[-1][1]:
-                (width, length) = stack.pop()
-                # stack is not empty, so we have an intermediate left barrier
-                if len(stack) != 0:
-                    left_bar = stack[-1][1]
-                else:
-                    left_bar = height[l]
+                while len(stack) > 0:
+                    (width, length) = stack.pop()
+                    # stack is still not empty, so we have an intermediate left barrier
+                    if len(stack) > 0:
+                        left_bar = stack[-1][1]
+                    # stack has been emptied
+                    else:
+                        left_bar = height[l]
 
-                # TODO: May need two cases here:
-                # 1. Stack empty = left barrier
-                # 2. Stack not empty = intermediate left barrier
+                    if height[r] < left_bar:
+                        trapped += (r - width) * (height[r] - length)
+                    else:
+                        trapped += (r - width) * (left_bar - length)
 
-                if height[r] < left_bar:
-                    trapped += (r - width) * (height[r] - length)
-                else:
-                    trapped += (r - width) * (left_bar - length)
-                    # if left barrier is the bottleneck, we've added all rain possible from that side
+                # current "right barrier" could be an intermediate left barrier
+                stack.append((r, height[r]))
+                # if left barrier was the bottleneck on the last iteration,
+                # we've added all rain possible to the left of the right pointer
+                if height[l] <= height[r]:
                     l = r
             r += 1
 
