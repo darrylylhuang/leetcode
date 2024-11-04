@@ -9,6 +9,9 @@ class MinStack(object):
         :type val: int
         :rtype: None
         """
+        if self._min is None or val < self._min:
+            self._min = val
+        self._stack.append(val)
 
     def pop(self):
         """
