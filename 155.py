@@ -23,6 +23,7 @@ class MinStack(object):
         """
         :rtype: int
         """
+        return self._stack[-1]
 
     def getMin(self):
         """
