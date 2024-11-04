@@ -17,6 +17,7 @@ class MinStack(object):
         """
         :rtype: None
         """
+        self._stack.pop()
 
     def top(self):
         """
