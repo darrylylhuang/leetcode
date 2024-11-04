@@ -1,7 +1,8 @@
 class MinStack(object):
 
     def __init__(self):
-        return
+        self._stack = []
+        self._min = None
 
     def push(self, val):
         """
@@ -23,6 +24,7 @@ class MinStack(object):
         """
         :rtype: int
         """
+        return self._min
 
 
 # Your MinStack object will be instantiated and called as such:
