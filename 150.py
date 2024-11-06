@@ -11,6 +11,11 @@ class Solution(object):
                 stack.append(int(token))
             # operator
             else:
+                # case 1: negative number
+                if token.strip("-").isnumeric():
+                    stack.append(-1 * int(token))
+                    continue
+                # case 2: operator
                 # second token is at the top of the stack
                 right = stack.pop()
                 left = stack.pop()
