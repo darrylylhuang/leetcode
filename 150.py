@@ -6,12 +6,12 @@ class Solution(object):
         """
         stack = []
         for token in tokens:
-            if token.isnumeric():
+            if token.isdigit():
                 stack.append(int(token))
             # operator
             else:
                 # case 1: negative number
-                if token.strip("-").isnumeric():
+                if token.strip("-").isdigit():
                     stack.append(int(token))
                     continue
 
