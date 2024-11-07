@@ -8,19 +8,18 @@ class Solution(object):
         stack = []
 
         # base case: all strings start with an open
-        stack.append("(")
-        n -= 1
+        stack.append(("(", n - 1))
         while stack:
             old_combo = stack.pop()
 
             # try close
-            stack.append(old_combo + ")")
+            stack.append((old_combo[0] + ")", old_combo[1]))
 
             # try open
-            if n > 0:
-                stack.append(old_combo + "(")
-                n -= 1
-
-            result.append(stack.pop())
+            if old_combo[1] > 0:
+                stack.append((old_combo[0] + "(", old_combo[1] - 1))
+            # if no more brackets can be opened, our last element used it's last close since we try close first
+            else:
+                result.append(stack.pop()[0])
 
         return result
