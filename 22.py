@@ -5,21 +5,23 @@ class Solution(object):
         :rtype: List[str]
         """
         result = []
+        # our stack will be in the form (str, open, close)
         stack = []
 
         # base case: all strings start with an open
-        stack.append(("(", n - 1))
+        stack.append(("(", 1, 0))
         while stack:
-            old_combo = stack.pop()
-
+            (old_combo, open, close) = stack.pop()
             # try close
-            stack.append((old_combo[0] + ")", old_combo[1]))
+            if close < open:
+                stack.append((old_combo + ")", open, close + 1))
 
             # try open
-            if old_combo[1] > 0:
-                stack.append((old_combo[0] + "(", old_combo[1] - 1))
-            # if no more brackets can be opened, our last element used it's last close since we try close first
-            else:
-                result.append(stack.pop()[0])
+            if open < n:
+                stack.append((old_combo + "(", open + 1, close))
+
+            # open and close are both invalid meaning we've found a result element
+            if open == n and close == n:
+                result.append(old_combo)
 
         return result
