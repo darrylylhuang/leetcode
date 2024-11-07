@@ -7,22 +7,20 @@ class Solution(object):
         result = []
         stack = []
 
-        current_combo = "("
-        stack.append(current_combo)
+        # base case: all strings start with an open
+        stack.append("(")
         n -= 1
-        while True:
-            # try open
-            if n > 0:
-                current_combo += "("
-                stack.append("(")
-                n -= 1
+        while stack:
+            old_combo = stack.pop()
 
             # try close
-            if stack:
-                stack.pop()
-                current_combo += ")"
+            stack.append(old_combo + ")")
 
-            if n == 0:
-                break
+            # try open
+            if n > 0:
+                stack.append(old_combo + "(")
+                n -= 1
+
+            result.append(stack.pop())
 
         return result
