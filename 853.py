@@ -6,6 +6,15 @@ class Solution(object):
         :type speed: List[int]
         :rtype: int
         """
+        return self.carFleet2(target, position, speed)
+
+    def carFleet1(self, target, position, speed):
+        """
+        :type target: int
+        :type position: List[int]
+        :type speed: List[int]
+        :rtype: int
+        """
         # combine to one list
         pos_speed = [(p, s) for p, s in zip(position, speed)]
         # sort by position
@@ -20,3 +29,14 @@ class Solution(object):
                 stack.append(time)
 
         return len(stack)
+
+    def carFleet2(self, target, position, speed):
+        """
+        :type target: int
+        :type position: List[int]
+        :type speed: List[int]
+        :rtype: int
+        """
+        position_time_map = {position[i]: (target - position[i]) / speed[i]
+                             for i in range(len(position))}
+        position.sort(reversed=True)
