@@ -7,22 +7,16 @@ class Solution(object):
         :rtype: int
         """
         # combine to one list
-        pos_speed = []
-        for i, p in enumerate(position):
-            pos_speed.append((p, speed[i]))
+        pos_speed = [(p, s) for p, s in zip(position, speed)]
         # sort by position
-        pos_speed.sort(key=lambda x: x[0])
+        pos_speed.sort(key=lambda x: x[0], reverse=True)
 
         # fleets
         stack = []
-        new_positions = position
-        while new_positions != [target] * len(position):
-            for i, s in enumerate(speed):
-                new_positions[i] += s
-                if not stack or stack[-1] > new_positions[i]:
-                    stack.append(new_positions[i])
-                else:
-                    # a car has caught up to another
-                    new_positions[i] = stack[-1]
-                    # TODO: identify fleet
-                    # TODO: update speed somehow
+        for ps in pos_speed:
+            (pos, spd) = ps
+            time = (target - pos) / spd
+            if not stack or stack[-1] < time:
+                stack.append(time)
+
+        return len(stack)
