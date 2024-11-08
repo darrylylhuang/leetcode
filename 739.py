@@ -7,11 +7,8 @@ class Solution(object):
         stack = []
         answer = [0] * len(temperatures)
         for i in range(len(temperatures)):
-            if not stack or temperatures[i] <= stack[-1][1]:
-                stack.append((i, temperatures[i]))
-            else:
-                while stack and temperatures[i] > stack[-1][1]:
-                    (j, temp) = stack.pop()
-                    answer[j] = i - j
-                stack.append((i, temperatures[i]))
+            while stack and temperatures[i] > stack[-1][1]:
+                (j, temp) = stack.pop()
+                answer[j] = i - j
+            stack.append((i, temperatures[i]))
         return answer
