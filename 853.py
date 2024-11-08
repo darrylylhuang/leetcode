@@ -6,6 +6,14 @@ class Solution(object):
         :type speed: List[int]
         :rtype: int
         """
+        # combine to one list
+        pos_speed = []
+        for i, p in enumerate(position):
+            pos_speed.append((p, speed[i]))
+        # sort by position
+        pos_speed.sort(key=lambda x: x[0])
+
+        # fleets
         stack = []
         new_positions = position
         while new_positions != [target] * len(position):
