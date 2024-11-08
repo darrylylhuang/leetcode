@@ -10,4 +10,8 @@ class Solution(object):
             if not stack or temperatures[i] <= stack[-1][1]:
                 stack.append((i, temperatures[i]))
             else:
-                continue
+                while stack and temperatures[i] > stack[-1][1]:
+                    (j, temp) = stack.pop()
+                    answer.insert(j, i - j)
+                stack.append((i, temperatures[i]))
+        return answer
