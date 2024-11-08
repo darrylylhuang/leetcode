@@ -6,11 +6,8 @@ class Solution(object):
         """
         stack = []
         answer = []
-        days = 0
-        for temperature in temperatures:
-            if not stack or temperature < stack[-1]:
-                stack.append(temperature)
+        for i in range(len(temperatures)):
+            if not stack or temperatures[i] < stack[-1][1]:
+                stack.append((i, temperatures[i]))
             else:
-                answer.append(len(stack))
-                stack.pop()
-                stack.append(temperature)
+                continue
