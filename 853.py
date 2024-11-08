@@ -39,4 +39,12 @@ class Solution(object):
         """
         position_time_map = {position[i]: (target - position[i]) / speed[i]
                              for i in range(len(position))}
-        position.sort(reversed=True)
+        position.sort(reverse=True)
+
+        stack = []
+        for p in position:
+            time = position_time_map[p]
+            if not stack or stack[-1] < time:
+                stack.append(time)
+
+        return len(stack)
