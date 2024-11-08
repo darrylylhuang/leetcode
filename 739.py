@@ -6,8 +6,8 @@ class Solution(object):
         """
         stack = []
         answer = [0] * len(temperatures)
-        for i in range(len(temperatures)):
-            while stack and temperatures[i] > temperatures[stack[-1]]:
+        for i, t in enumerate(temperatures):
+            while stack and t > temperatures[stack[-1]]:
                 j = stack.pop()
                 answer[j] = i - j
             stack.append(i)
