@@ -1,5 +1,8 @@
 class Solution(object):
     def generateParenthesis(self, n):
+        return self.generateParenthesisI(n)
+
+    def generateParenthesisI(self, n):
         """
         :type n: int
         :rtype: List[str]
@@ -24,4 +27,27 @@ class Solution(object):
             if open == n and close == n:
                 result.append(old_combo)
 
+        return result
+
+    def generateParenthesisR(self, n):
+        """
+        :type n: int
+        :rtype: List[str]
+        """
+        result = []
+
+        # base case: all strings start with an open
+        element = "("
+
+        def backtrack(element, open, close):
+            if open < n:
+                backtrack(element + "(", open + 1, close)
+
+            if close < open:
+                backtrack(element + ")", open, close + 1)
+
+            if open == n and close == n:
+                result.append(element)
+
+        backtrack(element, 1, 0)
         return result
