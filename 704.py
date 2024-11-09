@@ -5,6 +5,7 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
+        # offset for when we skip parts of the list
         offset = 0
         # list size cannot go below 1 when slicing
         while len(nums) > 1:
