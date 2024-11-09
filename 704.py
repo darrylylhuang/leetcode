@@ -5,15 +5,17 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        # empty list means target never found
-        if len(nums) == 0:
-            return -1
+        while len(nums) > 0:
+            # because the list is sorted, we'll begin checking at the middle
+            mid = len(nums) // 2
+            if nums[mid] == target:
+                return mid
+            # check the lesser half of the list
+            elif nums[mid] > target:
+                nums = nums[:mid]
+            # check the greater half of the list
+            else:
+                nums = nums[mid:]
 
-        # because the list is sorted, we'll begin checking at the middle
-        mid = len(nums) // 2
-        if nums[mid] == target:
-            return mid
-        elif nums[mid] > target:
-            return self.search(nums[:mid], target)
-        else:
-            return self.search(nums[mid:], target)
+        # empty list means target never found
+        return -1
