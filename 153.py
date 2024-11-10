@@ -20,6 +20,6 @@ class Solution(object):
             # mid > r means we are in a rotated portion of the array and a minimum value exists to the right
             else:
                 l = mid + 1
-                # mid == r should be impossible
+                # mid == r should be impossible because of unique elements in input
         # only one element in the list
         return nums[0]
