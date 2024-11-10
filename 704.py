@@ -5,23 +5,18 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        # offset for when we skip parts of the list
-        offset = 0
+        # two pointers to metaphorically make the list smaller
+        l, r = 0, len(nums) - 1
         # list size cannot go below 1 when slicing
-        while len(nums) > 1:
+        while l <= r:
             # because the list is sorted, we'll begin checking at the middle
-            mid = len(nums) // 2
-            if nums[mid] == target:
-                return mid + offset
+            mid = (l + r) // 2
+            if nums[mid] > target:
+                r = mid - 1
             # check the lesser half of the list
-            elif nums[mid] > target:
-                nums = nums[:mid]
+            elif nums[mid] < target:
+                l = mid + 1
             # check the greater half of the list
             else:
-                offset += mid
-                nums = nums[mid:]
-
-        # empty list means target never found
-        if nums[0] == target:
-            return offset
+                return mid
         return -1
