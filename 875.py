@@ -10,7 +10,7 @@ class Solution(object):
         l, r = 1, max(piles)
         lowest_eating_rate = r
         # O(log(n))
-        while l < r:
+        while l <= r:
             time_taken = 0
             mid = (l + r) // 2
             # O(n)
