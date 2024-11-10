@@ -10,9 +10,11 @@ class Solution(object):
         l, r = 1, max(piles)
         # longest_time = 0
         lowest_eating_rate = r
+        # O(log(n))
         while l < r:
             time_taken = 0
             mid = (l + r) // 2
+            # O(n)
             for pile in piles:
                 # ceiling divison
                 time_taken += -(pile // -mid)
