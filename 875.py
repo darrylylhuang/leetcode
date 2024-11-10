@@ -7,9 +7,10 @@ class Solution(object):
         """
         # if we have a very generous h, we can eat one banana at a time
         # having a banana-eating rate higher than our largest pile is pointless
+        # O(n)
         l, r = 1, max(piles)
         lowest_eating_rate = r
-        # O(log(n))
+        # O(log(r))
         while l <= r:
             time_taken = 0
             mid = (l + r) // 2
