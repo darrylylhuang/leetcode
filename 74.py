@@ -5,22 +5,16 @@ class Solution(object):
         :type target: int
         :rtype: bool
         """
-        m = len(matrix)
-        n = len(matrix[0])
-        mid = m * n // 2
-        offset = 0
-        while mid > 0:
-            i = mid + offset // n
+        m, n = len(matrix), len(matrix[0])
+        l, r = 0, m * n - 1
+        while l <= r:
+            mid = (l + r) // 2
+            i = mid // n
             j = mid % n
-            if matrix[i][j] == target:
-                return True
-            elif matrix[i][j] > target:
-                mid = mid // 2
+            if matrix[i][j] > target:
+                r = mid - 1
+            elif matrix[i][j] < target:
+                l = mid + 1
             else:
-                mid = mid // 2
-                offset += mid
-        
-        i = offset // n
-        j = offset % n
-        # final element
-        return matrix[i][j] == target
+                return True
+        return False
