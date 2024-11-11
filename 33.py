@@ -13,13 +13,15 @@ class Solution(object):
                 return mid
             elif target == nums[r]:
                 return r
+            elif target == nums[l]:
+                return l
             # target between mid and r sorted
-            # hope the list has been rotated and check right
-            elif target > nums[mid] and target < nums[r] or target < nums[mid] and target > nums[r]:
+            # or the list has been rotated so check right (the left of r)
+            elif nums[mid] < target and target < nums[r] or target < nums[mid] and nums[r] < nums[mid]:
                 l = mid + 1
             # target between l and mid sorted
-            # hope the list has been rotated and check left
-            elif target < nums[mid] and target > nums[r] or target > nums[mid] and target < nums[r]:
+            # or the list has been rotated and check left (the right of l)
+            elif nums[l] < target and target < nums[mid] or target > nums[mid] and nums[r] > nums[mid]:
                 r = mid - 1
             else:
                 return -1
