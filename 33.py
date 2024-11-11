@@ -12,12 +12,9 @@ class Solution(object):
             # check all our points of comparison to make sure we don't skip over them
             if target == nums[mid]:
                 return mid
-            elif target == nums[r]:
-                return r
-            elif target == nums[l]:
-                return l
+
             # target can only be greater than r if the list has been rotated, so we search left
-            elif target > nums[r]:
+            if target > nums[r]:
                 # unless we're already in the "left sorted portion"
                 if target > nums[mid] and nums[mid] > nums[r]:
                     l = mid + 1
