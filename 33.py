@@ -9,7 +9,6 @@ class Solution(object):
         # base case len(nums) == 2
         while l <= r:
             mid = (l + r) // 2
-            print(l, r, mid)
             # check all our points of comparison to make sure we don't skip over them
             if target == nums[mid]:
                 return mid
@@ -34,8 +33,3 @@ class Solution(object):
                 else:
                     l = mid + 1
         return -1
-
-
-nums = [8, 9, 2, 3, 4]
-target = 9
-print(Solution().search(nums, target))
