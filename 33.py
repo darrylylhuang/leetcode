@@ -9,20 +9,27 @@ class Solution(object):
         # base case len(nums) == 2
         while l <= r:
             mid = (l + r) // 2
+            # check all our points of comparison to make sure we don't skip over them
             if target == nums[mid]:
                 return mid
             elif target == nums[r]:
                 return r
             elif target == nums[l]:
                 return l
-            # target between mid and r sorted
-            # or the list has been rotated so check right (the left of r)
-            elif nums[mid] < target and target < nums[r] or target < nums[mid] and nums[r] < nums[mid]:
-                l = mid + 1
-            # target between l and mid sorted
-            # or the list has been rotated and check left (the right of l)
-            elif nums[l] < target and target < nums[mid] or target > nums[mid] and nums[r] > nums[mid]:
-                r = mid - 1
+            # target can only be greater than r if the list has been rotated, so we search left
+            elif target > nums[r]:
+                # unless we're already in the "left sorted portion"
+                if target > nums[mid]:
+                    l = mid + 1
+                else:
+                    r = mid - 1
+            # there are a few cases to consider if target < r
             else:
-                return -1
+                # if target < mid and we're in the "right sorted portion", we should search left
+                # if target < mid and the list hasn't been rotated, we should also search left
+                # in all other cases, we search right
+                if target < nums[mid] and (nums[mid] < nums[l] or nums[l] < nums[r]):
+                    r = mid - 1
+                else:
+                    l = mid + 1
         return -1
