@@ -11,9 +11,10 @@ class TimeMap(object):
         :rtype: None
         """
         if key in self._values:
-            self._values[key].append((timestamp, value))
+            self._values[key][0].append(timestamp)
+            self._values[key][1].append(value)
         else:
-            self._values[key] = [(timestamp, value)]
+            self._values[key] = [[timestamp], [value]]
 
     def get(self, key, timestamp):
         """
