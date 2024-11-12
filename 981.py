@@ -33,6 +33,10 @@ class TimeMap(object):
         if old_timestamps[-1] <= timestamp:
             return values[-1]
 
+        # given timestamp is less than min, so a value is impossible
+        if timestamp < old_timestamps[0]:
+            return ""
+
         l, r = 0, len(old_timestamps) - 1
         most_recent_time_index = l
         # binary search for give timestamp
