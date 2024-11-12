@@ -10,7 +10,7 @@ class TimeMap(object):
         :type timestamp: int
         :rtype: None
         """
-        if self._values[key]:
+        if key in self._values:
             self._values[key].append((timestamp, value))
         else:
             self._values[key] = [(timestamp, value)]
@@ -21,6 +21,8 @@ class TimeMap(object):
         :type timestamp: int
         :rtype: str
         """
+        if not key in self._values:
+            return ""
 
 
 # Your TimeMap object will be instantiated and called as such:
