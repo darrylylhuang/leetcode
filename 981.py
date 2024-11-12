@@ -1,7 +1,7 @@
 class TimeMap(object):
 
     def __init__(self):
-        return
+        self._values = dict()
 
     def set(self, key, value, timestamp):
         """
@@ -10,6 +10,10 @@ class TimeMap(object):
         :type timestamp: int
         :rtype: None
         """
+        if self._values[key]:
+            self._values[key].append((timestamp, value))
+        else:
+            self._values[key] = [(timestamp, value)]
 
     def get(self, key, timestamp):
         """
