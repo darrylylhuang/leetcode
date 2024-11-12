@@ -34,12 +34,14 @@ class TimeMap(object):
             return values[-1]
 
         l, r = 0, len(old_timestamps) - 1
+        most_recent_time_index = l
         # binary search for give timestamp
         while l <= r:
             mid = (l + r) // 2
+            if old_timestamps[mid] > timestamp:
+                r = mid - 1
+            else:
+                most_recent_time_index = mid
+                l = mid + 1
 
-
-# Your TimeMap object will be instantiated and called as such:
-# obj = TimeMap()
-# obj.set(key,value,timestamp)
-# param_2 = obj.get(key,timestamp)
+        return values[most_recent_time_index]
