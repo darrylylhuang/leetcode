@@ -25,6 +25,19 @@ class TimeMap(object):
         if not key in self._values:
             return ""
 
+        # the timestamp for the last element in the list will be the max since timestamp is strictly increasing
+        old_timestamps = self._values[key][0]
+        values = self._values[key][1]
+        l, r = 0, timestamp_prev = old_timestamps[-1]
+
+        # max old_timestamp is less than given so we return
+        if r <= timestamp:
+            return values[-1]
+        
+        # binary search for give timestamp
+        while l <= r:
+            mid = (l + r) // 2
+
 
 # Your TimeMap object will be instantiated and called as such:
 # obj = TimeMap()
