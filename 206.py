@@ -9,6 +9,13 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
+        return self.reverseListI(head)
+
+    def reverseListI(self, head):
+        """
+        :type head: Optional[ListNode]
+        :rtype: Optional[ListNode]
+        """
         # end of the list
         prev = None
         # first node
@@ -26,3 +33,6 @@ class Solution(object):
         # will return None if the loop never executed
         # will return the new head otherwise
         return prev
+    
+    def reverseListR(self, head):
+        return
