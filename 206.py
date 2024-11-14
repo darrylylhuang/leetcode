@@ -33,6 +33,10 @@ class Solution(object):
         # will return None if the loop never executed
         # will return the new head otherwise
         return prev
-    
-    def reverseListR(self, head):
-        return
+
+    def reverseListR(self, head, prev=None):
+        if head is None:
+            return prev
+        next = head.next
+        head.next = prev
+        return self.reverseListR(next, head)
