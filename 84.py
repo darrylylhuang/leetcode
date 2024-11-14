@@ -17,8 +17,8 @@ class Solution(object):
 
         i += 1
         while stack:
-            dimensions = stack.pop()
+            w, h = stack.pop()
             max_area = max(
-                max_area, (i - dimensions[0]) * dimensions[1])
+                max_area, (i - w) * h)
 
         return max_area
