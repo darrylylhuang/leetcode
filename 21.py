@@ -39,7 +39,7 @@ class Solution(object):
                 # append the rest of list1 and break
                 curr.next = curr1
                 break
-            elif curr1 < curr2:
+            elif curr1.val < curr2.val:
                 curr.next = curr1
                 curr1 = curr1.next
             else:
