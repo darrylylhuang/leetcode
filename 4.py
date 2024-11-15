@@ -14,8 +14,9 @@ class Solution(object):
             A, B = B, A
         l, r = 0, len(A) - 1
         mid = (l + r) // 2
-        # subtract 1 twice since this is an index relating to A and B
-        partition_point_B = half - mid - 2 
+        # subtract 1 twice since this is an index AND mid is an index
+        # while half is the number of elements
+        partition_point_B = half - mid - 2
 
         l1, r1 = 0, len(nums1) - 1
         l2, r2 = 0, len(nums2) - 1
