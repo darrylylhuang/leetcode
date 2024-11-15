@@ -22,3 +22,14 @@ class Solution(object):
                 r2 = (l2 + r2) // 2
             else:
                 r1 = (l1 + r1) // 2
+
+        # both lists bottomed out at the same time
+        if l1 == r1 and l2 == r2:
+            # m + n MUST be even so the median is an average
+            return (nums1[l1] + nums2[l2]) / 2
+        # nums2 bottomed out first
+        elif l1 < r1:
+            leftover = nums2[l1]
+        # nums1 bottomed out first
+        else:
+            leftover = nums1[l2]
