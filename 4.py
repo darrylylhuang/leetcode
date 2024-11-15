@@ -30,6 +30,24 @@ class Solution(object):
         # nums2 bottomed out first
         elif l1 < r1:
             leftover = nums2[l1]
+            while l1 < r1:
+                if nums1[l1] < leftover:
+                    l1 = (l1 + r1) // 2
+                if nums1[r1] > leftover:
+                    r1 = (l1 + r1) // 2
+            if leftover > nums1[l1]:
+                return float(leftover)
+            else:
+                return float(nums1[l1])
         # nums1 bottomed out first
         else:
             leftover = nums1[l2]
+            while l2 < r2:
+                if nums2[l2] < leftover:
+                    l2 = (l2 + r2) // 2
+                if nums1[r1] > leftover:
+                    r2 = (l2 + r2) // 2
+            if leftover > nums1[l2]:
+                return float(leftover)
+            else:
+                return float(nums2[l2])
