@@ -29,6 +29,22 @@ class Solution(object):
             B_left_max = B[B_mid] if B_mid >= 0 else neg_inf
             B_right_min = B[B_mid + 1] if (B_mid + 1) < len(B) else inf
 
+            # we included too many elements from A
+            if A_left_max > B_right_min:
+                r = A_mid - 1
+            # we included too many elements from B (so we pad with A elements)
+            elif B_left_max > A_right_min:
+                l = A_mid + 1
+            # suitable partition
+            else:
+                # odd elements
+                if total % 2:
+                    # partition is made right heavy since we round down with integer divison
+                    return min(A_right_min, B_right_min)
+                # even elements
+                else:
+                    return (max(A_left_max, B_left_max) + min(A_right_min, B_right_min)) / 2
+
         l1, r1 = 0, len(nums1) - 1
         l2, r2 = 0, len(nums2) - 1
         # pointers in different lists may move at different rates
