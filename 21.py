@@ -10,3 +10,18 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
+        if list1 is None:
+            head = list2
+        elif list2 is None:
+            head = list1
+        elif list1.val < list2.val:
+            head = list1
+        else:
+            head = list2
+
+        curr = head
+
+        while curr:
+            break
+
+        return head
