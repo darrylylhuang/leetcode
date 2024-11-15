@@ -13,10 +13,21 @@ class Solution(object):
         if len(A) > len(B):
             A, B = B, A
         l, r = 0, len(A) - 1
-        mid = (l + r) // 2
-        # subtract 1 twice since this is an index AND mid is an index
-        # while half is the number of elements
-        partition_point_B = half - mid - 2
+
+        neg_inf = float("-infinity")
+        inf = float("infinity")
+        # binary search to find suitable partition for A and B
+        # an equal partition allows us to find the median
+        while True:
+            A_mid = (l + r) // 2
+            # subtract 1 twice since this is an index AND A_mid is an index
+            # while half is the number of elements we desire in the left partition
+            B_mid = half - A_mid - 2
+
+            A_left_max = A[A_mid] if A_mid >= 0 else neg_inf
+            A_right_min = A[A_mid + 1] if (A_mid + 1) < len(A) else inf
+            B_left_max = B[B_mid] if B_mid >= 0 else neg_inf
+            B_right_min = B[B_mid + 1] if (B_mid + 1) < len(B) else inf
 
         l1, r1 = 0, len(nums1) - 1
         l2, r2 = 0, len(nums2) - 1
