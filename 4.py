@@ -5,6 +5,18 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
+        total = len(nums1) + len(nums2)
+        half = total // 2
+
+        A, B = nums1, nums2
+        # let A be the smaller array
+        if len(A) > len(B):
+            A, B = B, A
+        l, r = 0, len(A) - 1
+        mid = (l + r) // 2
+        # subtract 1 twice since this is an index relating to A and B
+        partition_point_B = half - mid - 2 
+
         l1, r1 = 0, len(nums1) - 1
         l2, r2 = 0, len(nums2) - 1
         # pointers in different lists may move at different rates
