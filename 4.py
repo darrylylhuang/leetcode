@@ -12,7 +12,7 @@ class Solution(object):
         while l1 < r1 and l2 < r2:
 
             # move the lesser left pointer towards the "middle"
-            if nums1[l2] < nums2[l1]:
+            if nums1[l1] < nums2[l2]:
                 l1 = (l1 + r1) // 2
             else:
                 l2 = (l2 + r2) // 2
