@@ -5,3 +5,5 @@ class Solution(object):
         :type nums2: List[int]
         :rtype: float
         """
+        l1, r1 = 0, len(nums1) - 1
+        l2, r2 = 0, len(nums2) - 1
