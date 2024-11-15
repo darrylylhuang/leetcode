@@ -16,35 +16,33 @@ class Solution(object):
             return list1
         elif list1.val < list2.val:
             head = list1
-            curr1 = head.next
-            curr2 = list2
+            list1 = list1.next
         else:
             head = list2
-            curr1 = list1
-            curr2 = head.next
+            list2 = list2.next
 
         curr = head
         while curr:
             # both lists have been exhausted
-            if curr1 is None and curr2 is None:
+            if list1 is None and list2 is None:
                 # we can point to the end
                 curr.next = None
             # list1 has been exhausted
-            elif curr1 is None:
+            elif list1 is None:
                 # append the rest of list2 and break
-                curr.next = curr2
+                curr.next = list2
                 break
             # list2 has been exhausted
-            elif curr2 is None:
+            elif list2 is None:
                 # append the rest of list1 and break
-                curr.next = curr1
+                curr.next = list1
                 break
-            elif curr1.val < curr2.val:
-                curr.next = curr1
-                curr1 = curr1.next
+            elif list1.val < list2.val:
+                curr.next = list1
+                list1 = list1.next
             else:
-                curr.next = curr2
-                curr2 = curr2.next
+                curr.next = list2
+                list2 = list2.next
             curr = curr.next
 
         return head
