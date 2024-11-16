@@ -23,6 +23,15 @@ class Solution(object):
             slow = slow.next
             fast = fast.next.next
 
+        # reverse the links for the second half of the list
+        prev = None
+        curr = slow
+        while curr:
+            nxt = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nxt
+
     def reorderListArray(self, head):
         """
         Utilizes array functionality instead of strictly stack
