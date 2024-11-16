@@ -9,3 +9,9 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: None Do not return anything, modify head in-place instead.
         """
+        # calculate the number of nodes
+        curr = head
+        n = 0
+        while curr:
+            n += 1
+            curr = curr.next
