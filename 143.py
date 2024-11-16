@@ -18,7 +18,7 @@ class Solution(object):
 
         # add the second half of list to the stack
         # n - half, n - half + 1, ..., n - 1, n
-        half = n // 2
+        half = (n - 1) // 2
         stack = []
         curr = head
         i = 0
