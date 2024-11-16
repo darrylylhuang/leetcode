@@ -33,6 +33,15 @@ class Solution(object):
             curr = nxt
         curr.next = prev
 
+        l, r = head, curr
+        while l:
+            nextL = l.next
+            nextR = r.next
+            l.next = r
+            r.next = nextL
+            r = nextR
+            l = nextL
+
     def reorderListArray(self, head):
         """
         Utilizes array functionality instead of strictly stack
