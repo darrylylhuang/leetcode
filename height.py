@@ -54,7 +54,9 @@ def height(root):
 
 
 def heightR(root):
-    if root.left is None and root.right is None:
+    if root is None:
+        return 0
+    elif root.left is None and root.right is None:
         return 0
     else:
         return max(heightR(root.left), heightR(root.right)) + 1
