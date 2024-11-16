@@ -9,6 +9,45 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: None Do not return anything, modify head in-place instead.
         """
+        self.reorderList2(head)
+
+    def reorderList2(self, head):
+        """
+        Utilizes array functionality instead of strictly stack
+        :type head: Optional[ListNode]
+        :rtype: None Do not return anything, modify head in-place instead.
+        """
+        curr = head
+        stack = []
+        while curr:
+            stack.append(curr)
+            curr = curr.next
+
+        # calculate the number of nodes
+        n = len(stack)
+
+        # add the second half of list to the stack
+        # n - half, n - half + 1, ..., n - 1, n
+        half = (n - 1) // 2
+        stack = stack[(half + 1):]
+
+        # pop from the stack and put nodes in order
+        # 0, n, 1, n-1, 2, n-2, ...
+        curr = head
+        while stack:
+            nxt = curr.next
+            curr.next = stack.pop()
+            curr.next.next = nxt
+            curr = nxt
+
+        curr.next = None
+
+    def reorderList1(self, head):
+        """
+        Uses the strict definition of a stack
+        :type head: Optional[ListNode]
+        :rtype: None Do not return anything, modify head in-place instead.
+        """
         # calculate the number of nodes
         curr = head
         n = 0
