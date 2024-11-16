@@ -45,8 +45,19 @@ self.info (the value of the node)
 
 
 def levelOrder(root):
-    # Write your code here
-    return
+    if root is None:
+        print("")
+
+    queue = [root]
+    result = ""
+    while queue:
+        node = queue.pop(0)
+        result += str(node.info) + " "
+        if node.left is not None:
+            queue.append(node.left)
+        if node.right is not None:
+            queue.append(node.right)
+    print(result.strip())
 
 
 tree = BinarySearchTree()
