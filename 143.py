@@ -9,9 +9,21 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: None Do not return anything, modify head in-place instead.
         """
-        self.reorderList2(head)
+        self.reorderList2Pointers(head)
 
-    def reorderList2(self, head):
+    def reorderList2Pointers(self, head):
+        """
+        Uses two pointers
+        :type head: Optional[ListNode]
+        :rtype: None Do not return anything, modify head in-place instead.
+        """
+        slow, fast = head, head.next
+        # slow += 1; fast += 2
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+    def reorderListArray(self, head):
         """
         Utilizes array functionality instead of strictly stack
         :type head: Optional[ListNode]
@@ -42,7 +54,7 @@ class Solution(object):
 
         curr.next = None
 
-    def reorderList1(self, head):
+    def reorderListStack(self, head):
         """
         Uses the strict definition of a stack
         :type head: Optional[ListNode]
