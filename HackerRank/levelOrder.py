@@ -47,6 +47,7 @@ self.info (the value of the node)
 def levelOrder(root):
     if root is None:
         print("")
+        return
 
     queue = [root]
     result = ""
