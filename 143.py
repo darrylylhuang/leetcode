@@ -27,3 +27,14 @@ class Solution(object):
                 stack.append(curr)
             i += 1
             curr = curr.next
+
+        # pop from the stack and put nodes in order
+        # 0, n, 1, n-1, 2, n-2, ...
+        curr = head
+        while stack:
+            nxt = curr.next
+            curr.next = stack.pop()
+            curr.next.next = nxt
+            curr = nxt
+
+        curr.next = None
