@@ -15,3 +15,15 @@ class Solution(object):
         while curr:
             n += 1
             curr = curr.next
+
+        # add the second half of list to the stack
+        # n - half, n - half + 1, ..., n - 1, n
+        half = n // 2
+        stack = []
+        curr = head
+        i = 0
+        while curr:
+            if i > half:
+                stack.append(curr)
+            i += 1
+            curr = curr.next
