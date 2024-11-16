@@ -26,11 +26,12 @@ class Solution(object):
         # reverse the links for the second half of the list
         prev = None
         curr = slow
-        while curr:
+        while curr.next:
             nxt = curr.next
             curr.next = prev
             prev = curr
             curr = nxt
+        curr.next = prev
 
     def reorderListArray(self, head):
         """
