@@ -19,28 +19,30 @@ class Solution(object):
         """
         slow, fast = head, head.next
         # slow += 1; fast += 2
-        while fast is not None and fast.next is not None:
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
 
         # reverse the links for the second half of the list
         prev = None
         curr = slow
-        while curr.next:
+        while curr:
             nxt = curr.next
             curr.next = prev
             prev = curr
             curr = nxt
-        curr.next = prev
 
-        l, r = head, curr
+        # use two pointers to rearrange the list in order
+        # 0, n, 1, n-1, 2, n-2, ...
+        l, r = head, prev
         while l:
-            nextL = l.next
-            nextR = r.next
+            # save our increments
+            nextL, nextR = l.next, r.next
+            # first half points to second half
             l.next = r
+            # second half points back to first half incremented
             r.next = nextL
-            r = nextR
-            l = nextL
+            l, r = nextL, nextR
 
     def reorderListArray(self, head):
         """
