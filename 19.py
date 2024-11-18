@@ -12,6 +12,14 @@ class Solution(object):
         """
         return self.removeNthFromEndSlowFast(head, n)
 
+    def removeNthFromEndOffset(self, head, n):
+        """
+        :type head: Optional[ListNode]
+        :type n: int
+        :rtype: Optional[ListNode]
+        """
+        dummy = ListNode(0, head)
+
     def removeNthFromEndSlowFast(self, head, n):
         """
         Uses fast and slow pointers to calculate the size of the list
