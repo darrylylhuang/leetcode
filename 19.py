@@ -25,5 +25,18 @@ class Solution(object):
             sz -= 1
 
         index = sz - n
+        # start at 1 because we want to stop right before the element
+        i = 1
+        curr = head
+        # element is in the second half of the list
         if index > (sz - 1) // 2:
             index = sz - 1 - index
+            curr = slow
+
+        # loop until we're just before the desired element to remove
+        while i < index:
+            curr = curr.next
+
+        # set prev.next = curr.next to "delete" curr
+        curr.next = curr.next.next
+        return head
