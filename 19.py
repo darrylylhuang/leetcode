@@ -23,3 +23,7 @@ class Solution(object):
         # fast is pointing to None because we have odd elements
         if not fast:
             sz -= 1
+
+        index = sz - n
+        if index > (sz - 1) // 2:
+            index = sz - 1 - index
