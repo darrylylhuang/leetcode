@@ -19,7 +19,12 @@ class Solution(object):
         """
         if not root:
             return 0
-        # diameter = left height + right height
+
+        max_diameter = 0
+        # TODO: calculate intermediate height and diameter
+        # diameter = left_height + right_height
+        # max_diameter = max(left_diameter, right_diameter, diameter)
+
         # children may have larger sums than root if the tree is unbalanced
         return max(self.maxDepthR(root.left) + self.maxDepthR(root.right), self.diameterOfBinaryTreeR(root.left), self.diameterOfBinaryTreeR(root.right))
 
