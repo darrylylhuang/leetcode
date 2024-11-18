@@ -14,6 +14,7 @@ class Solution(object):
 
     def removeNthFromEndOffset(self, head, n):
         """
+        Uses an offset between a left and right pointer to find "n from the end".
         :type head: Optional[ListNode]
         :type n: int
         :rtype: Optional[ListNode]
