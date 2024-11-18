@@ -20,12 +20,8 @@ class Solution(object):
         if not root:
             return root
 
-        # invert children
-        self.invertTreeR(root.left)
-        self.invertTreeR(root.right)
-
-        # swap children so that this node is inverted
+        # invert children and swap them to invert current node
         placeholder = root.left
-        root.left = root.right
-        root.right = placeholder
+        root.left = self.invertTreeR(root.right)
+        root.right = self.invertTreeR(placeholder)
         return root
