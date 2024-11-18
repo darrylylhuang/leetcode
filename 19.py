@@ -5,6 +5,9 @@
 #         self.next = next
 class Solution(object):
     def removeNthFromEnd(self, head, n):
+        return self.removeNthFromEndSlowFast(head, n)
+
+    def removeNthFromEndSlowFast(self, head, n):
         """
         :type head: Optional[ListNode]
         :type n: int
