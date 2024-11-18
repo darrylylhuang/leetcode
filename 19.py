@@ -33,12 +33,14 @@ class Solution(object):
         curr = head
         # element is in the second half of the list
         if index > (sz - 1) // 2:
-            index = sz - 1 - index
+            # increment our counter to the midpoint
+            i += (sz - 1) // 2
             curr = slow
 
         # loop until we're just before the desired element to remove
         while i < index:
             curr = curr.next
+            i += 1
 
         # set prev.next = curr.next to "delete" curr
         curr.next = curr.next.next
