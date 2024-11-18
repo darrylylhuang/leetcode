@@ -5,10 +5,19 @@
 #         self.next = next
 class Solution(object):
     def removeNthFromEnd(self, head, n):
+        """
+        :type head: Optional[ListNode]
+        :type n: int
+        :rtype: Optional[ListNode]
+        """
         return self.removeNthFromEndSlowFast(head, n)
 
     def removeNthFromEndSlowFast(self, head, n):
         """
+        Uses fast and slow pointers to calculate the size of the list
+        and determine the index of the node to delete. This algorithm
+        should run twice as fast as using 2 loops since it runs two
+        "half" loops instead of 2 full ones.
         :type head: Optional[ListNode]
         :type n: int
         :rtype: Optional[ListNode]
