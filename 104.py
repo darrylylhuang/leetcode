@@ -10,7 +10,7 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: int
         """
-        return self.maxDepthI_BFS(root)
+        return self.maxDepthI_DFS(root)
 
     def maxDepthR(self, root):
         """
@@ -50,3 +50,21 @@ class Solution(object):
             # increment height by # of levels
             height += 1
         return height
+
+    def maxDepthI_DFS(self, root):
+        """
+        Iteratively uses pre-order DFS to find max depth
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
+        # initialize stack with depth 1
+        stack = [(root, 1)]
+        max_depth = 0
+        while stack:
+            curr, depth = stack.pop()
+            # increase depth for non-null nodes, and add their children
+            if curr:
+                max_depth = max(max_depth, depth)
+                stack.append((curr.left, depth + 1))
+                stack.append((curr.right, depth + 1))
+        return max_depth
