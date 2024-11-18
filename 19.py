@@ -19,6 +19,13 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         dummy = ListNode(0, head)
+        l, r = dummy, head
+        # we want the offset between the two pointers to be 1 larger than n
+        # so we can stay at "prev" and delete "curr"
+        i = 0
+        while i < n:
+            r = r.next
+            i += 1
 
     def removeNthFromEndSlowFast(self, head, n):
         """
