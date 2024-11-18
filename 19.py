@@ -10,7 +10,7 @@ class Solution(object):
         :type n: int
         :rtype: Optional[ListNode]
         """
-        return self.removeNthFromEndSlowFast(head, n)
+        return self.removeNthFromEndOffset(head, n)
 
     def removeNthFromEndOffset(self, head, n):
         """
@@ -18,6 +18,8 @@ class Solution(object):
         :type n: int
         :rtype: Optional[ListNode]
         """
+        # dummy node removes edge cases where we remove head
+        # including a list size of 1
         dummy = ListNode(0, head)
         l, r = dummy, head
         # we want the offset between the two pointers to be 1 larger than n
@@ -26,6 +28,16 @@ class Solution(object):
         while i < n:
             r = r.next
             i += 1
+
+        # increment both pointers until r reaches the end of the list
+        while r:
+            l = l.next
+            r = r.next
+
+        # l is at the node before our desired "delete" node
+        l.next = l.next.next
+        # return head
+        return dummy.next
 
     def removeNthFromEndSlowFast(self, head, n):
         """
