@@ -10,33 +10,22 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: int
         """
-        return self.diameterOfBinaryTreeR(root)
+        return self.height_and_max_diameter(root)[1]
 
-    def diameterOfBinaryTreeR(self, root):
+    def height_and_max_diameter(self, root):
         """
+        Find height and max diameter recursively
         :type root: Optional[TreeNode]
         :rtype: int
         """
+        # Null nodes are depth 0, and have diameter 0
         if not root:
-            return 0
-
-        max_diameter = 0
-        # TODO: calculate intermediate height and diameter
-        # diameter = left_height + right_height
-        # max_diameter = max(left_diameter, right_diameter, diameter)
-
-        # children may have larger sums than root if the tree is unbalanced
-        return max(self.maxDepthR(root.left) + self.maxDepthR(root.right), self.diameterOfBinaryTreeR(root.left), self.diameterOfBinaryTreeR(root.right))
-
-    def maxDepthR(self, root):
-        """
-        Find max depth recursively
-        :type root: Optional[TreeNode]
-        :rtype: int
-        """
-        # Null nodes are depth 0
-        if not root:
-            return 0
+            return (0, 0)
         # Check children's heights and add 1 for the current node
         else:
-            return max(self.maxDepthR(root.left), self.maxDepthR(root.right)) + 1
+            (l_height, l_diameter) = self.height_and_max_diameter(root.left)
+            (r_height, r_diameter) = self.height_and_max_diameter(root.right)
+            height = max(l_height, r_height) + 1
+            diameter = l_height + r_height
+            max_diameter = max(diameter, l_diameter, r_diameter)
+            return (height, max_diameter)
