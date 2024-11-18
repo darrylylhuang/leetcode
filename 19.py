@@ -12,8 +12,14 @@ class Solution(object):
         """
         # input is assumed to be valid: 1 <= n <= sz
         slow, fast = head, head.next
+        # assume two nodes to start
+        sz = 2
         # slow += 1; fast += 2
         while fast and fast.next:
             slow = slow.next
             fast = fast.next.next
-
+            # jump 2 nodes
+            sz += 2
+        # fast is pointing to None because we have odd elements
+        if not fast:
+            sz -= 1
