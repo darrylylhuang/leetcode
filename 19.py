@@ -11,6 +11,9 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         # input is assumed to be valid: 1 <= n <= sz
+        # base case: valid list with only one element
+        if not head.next:
+            return None
         slow, fast = head, head.next
         # assume two nodes to start
         sz = 2
