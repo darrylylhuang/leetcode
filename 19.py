@@ -10,3 +10,10 @@ class Solution(object):
         :type n: int
         :rtype: Optional[ListNode]
         """
+        # input is assumed to be valid: 1 <= n <= sz
+        slow, fast = head, head.next
+        # slow += 1; fast += 2
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
