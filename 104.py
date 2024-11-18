@@ -10,9 +10,17 @@ class Solution(object):
         :type root: Optional[TreeNode]
         :rtype: int
         """
+        return self.maxDepthR(root)
+
+    def maxDepthR(self, root):
+        """
+        Find max depth recursively
+        :type root: Optional[TreeNode]
+        :rtype: int
+        """
         # Null nodes are depth 0
         if not root:
             return 0
         # Check children's heights and add 1 for the current node
         else:
-            return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+            return max(self.maxDepthR(root.left), self.maxDepthR(root.right)) + 1
