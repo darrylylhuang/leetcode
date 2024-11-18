@@ -28,6 +28,10 @@ class Solution(object):
             sz -= 1
 
         index = sz - n
+        # edge case, we're removing the first element of the list
+        if index == 0:
+            return head.next
+
         # start at 1 because we want to stop right before the element
         i = 1
         curr = head
