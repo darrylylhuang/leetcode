@@ -44,3 +44,5 @@ class Solution(object):
 
             new = new.next
             old = old.next
+
+        return new_head
