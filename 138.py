@@ -19,20 +19,20 @@ class Solution(object):
 
         new_head = Node(head.val)
         new, old = new_head, head
+
         # map old nodes to new nodes
         old_to_new = dict()
         old_to_new[old] = new
+        # if the old Node isn't in the map, we need to create a new Node and map the two
+        # if the old Node is in the map, we use the new Node in the mapping
         while new:
-            # there is a chance that the next Node already exists because of random
-            if old.next in old_to_new:
-                new.next = old_to_new[old.next]
-            # if the next Node doesn't exist, create and map it even if it is None
-            else:
-                if old.next is None:
-                    new.next = None
+            # handle "next" nodes
+            if old.next not in old_to_new:
+                if old.next:
+                    old_to_new[old.next] = Node(old.next.val)
                 else:
-                    new.next = Node(old.next.val)
-                old_to_new[old.next] = new.next
+                    old_to_new[old.next] = None
+            new.next = old_to_new[old.next]
 
             new = new.next
             old = old.next
