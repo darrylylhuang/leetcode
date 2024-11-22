@@ -20,6 +20,10 @@ class Solution(object):
         new_head = Node(head.val)
         new, old = new_head, head
         while new:
-            new.next = Node(old.next)
+            if old.next is None:
+                new.next = None
+            else:
+                new.next = Node(old.next)
+
             new = new.next
             old = old.next
