@@ -34,5 +34,13 @@ class Solution(object):
                     old_to_new[old.next] = None
             new.next = old_to_new[old.next]
 
+            # handle "random" nodes
+            if old.random not in old_to_new:
+                if old.random:
+                    old_to_new[old.random] = Node(old.random.val)
+                else:
+                    old_to_new[old.random] = None
+            new.random = old_to_new[old.random]
+
             new = new.next
             old = old.next
