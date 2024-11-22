@@ -19,6 +19,9 @@ class Solution(object):
 
         new_head = Node(head.val)
         new, old = new_head, head
+        # map old nodes to new nodes
+        old_to_new = dict()
+        old_to_new[old] = new
         while new:
             if old.next is None:
                 new.next = None
