@@ -19,7 +19,7 @@ class Solution(object):
         # loop while either list is non-empty
         while l1 or l2:
             # initialize sum of digits
-            sum = 0
+            sum = carry
 
             # add digit value(s) to sum and increment input(s)
             if l1:
@@ -30,7 +30,7 @@ class Solution(object):
                 l2 = l2.next
 
             # addition carry over logic
-            curr.next = ListNode(sum % 10 + carry)
+            curr.next = ListNode(sum % 10)
             carry = sum // 10
 
             # increment output
