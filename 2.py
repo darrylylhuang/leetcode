@@ -10,3 +10,34 @@ class Solution(object):
         :type l2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
+        # dummy node to keep track of head
+        prehead = ListNode()
+        curr = prehead
+        # initialize carry at 0
+        carry = 0
+
+        # loop while either list is non-empty
+        while l1 or l2:
+            # initialize sum of digits
+            sum = 0
+
+            # add digit value(s) to sum and increment input(s)
+            if l1:
+                sum += l1.val
+                l1 = l1.next
+            if l2:
+                sum += l2.val
+                l2 = l2.next
+
+            # addition carry over logic
+            curr.next = ListNode(sum % 10 + carry)
+            carry = sum // 10
+
+            # increment output
+            curr = curr.next
+
+        # two equal length lists may have a final carry overflow
+        if carry != 0:
+            curr.next = ListNode(carry)
+
+        return prehead.next
