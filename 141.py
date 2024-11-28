@@ -10,6 +10,13 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
+        return self.hasCycleSet(head)
+
+    def hasCycleSet(self, head):
+        """
+        :type head: ListNode
+        :rtype: bool
+        """
         seen = set()
         curr = head
         while curr:
