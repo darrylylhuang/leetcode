@@ -34,21 +34,11 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
-        if not head:
-            return False
-
-        slow, fast = head, head.next
-        while slow and fast:
-            # collision
+        slow, fast = head, head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
             if slow == fast:
                 return True
 
-            slow = slow.next
-            fast = fast.next
-
-            if fast:
-                fast = fast.next
-            else:
-                # fast pointer has reached null (end of list)
-                return False
         return False
