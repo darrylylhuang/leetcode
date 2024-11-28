@@ -4,9 +4,13 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        n = len(nums)
-        slow, fast = 0, 1
-        while nums[slow % n] != nums[fast % n]:
-            slow += 1
-            fast += 2
-        return nums[slow % n]
+        # O(n^2)
+        for i in range(len(nums)):
+            slow, fast = i, i + 1
+            while nums[slow] != nums[fast] and fast < len(nums) - 1:
+                fast += 1
+
+            # found fast match
+            if nums[slow] == nums[fast]:
+                return nums[slow]
+            # no match for fixed slow
