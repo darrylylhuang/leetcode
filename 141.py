@@ -10,3 +10,12 @@ class Solution(object):
         :type head: ListNode
         :rtype: bool
         """
+        seen = set()
+        curr = head
+        while curr:
+            if curr in seen:
+                return True
+            else:
+                seen.add(curr)
+            curr = curr.next
+        return False
