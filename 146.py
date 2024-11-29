@@ -17,12 +17,20 @@ class LRUCache(object):
         else:
             return -1
 
+        # TODO: update key usage
+
     def put(self, key, value):
         """
         :type key: int
         :type value: int
         :rtype: None
         """
+        if key not in self._key_value and len(self._key_value) >= self._capacity:
+            # TODO: Evict LRU key
+            return
+        else:
+            # updates old key or adds new key-value if there is space
+            self._key_value[key] = value
 
 
 # Your LRUCache object will be instantiated and called as such:
