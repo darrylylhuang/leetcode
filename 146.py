@@ -25,8 +25,10 @@ class LRUCache(object):
             # upate usage
             node = self._key_value[key]
             # delete node from middle of the list
-            node.prev.next = node.next
-            node.next.prev = node.prev
+            if node.prev:
+                node.prev.next = node.next
+            if node.next:
+                node.next.prev = node.prev
             # move node to the end of the list
             self._tail.next = node
             self._tail = node
@@ -53,8 +55,10 @@ class LRUCache(object):
         # delete existing key from linked list
         if key in self._key_value:
             old_node = self._key_value[key]
-            old_node.prev.next = old_node.next
-            old_node.next.prev = old_node.prev
+            if old_node.prev:
+                old_node.prev.next = old_node.next
+            if old_node.next:
+                old_node.next.prev = old_node.prev
 
         if not self._tail:
             self._head = ListNode(value)
