@@ -21,6 +21,7 @@ class LRUCache(object):
         """
         :type node: ListNode
         """
+        # sever node's ties to delete it from the middle of the list
         node.prev.next = node.next
         node.next.prev - node.prev
 
@@ -28,8 +29,12 @@ class LRUCache(object):
         """
         :type node: ListNode
         """
-        # insert node
-        return
+        # insert node at the "tail" of the list
+        node.prev = self._tail.prev
+        node.next = self._tail
+        # detach old pointers and attach to node
+        self._tail.prev.next = node
+        self._tail.prev = node
 
     def get(self, key):
         """
