@@ -43,6 +43,12 @@ class LRUCache(object):
             # remove old key usage data (remove node from linked list)
             self._head = self._head.next
 
+        # delete existing key from linked list
+        if key in self._key_value:
+            old_node = self._key_value[key]
+            old_node.prev.next = old_node.next
+            old_node.next.prev = old_node.prev
+
             # add new key usage data (most recently used)
             new_node = ListNode(value)
             new_node.prev = self._tail
