@@ -31,6 +31,8 @@ class LRUCache(object):
             if node.next:
                 node.next.prev = node.prev
             # move node to the end of the list
+            node.next = None
+            node.prev = self._tail
             self._tail.next = node
             self._tail = node
             # return value from key-value pair
