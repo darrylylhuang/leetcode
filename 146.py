@@ -12,6 +12,10 @@ class LRUCache(object):
         :type key: int
         :rtype: int
         """
+        if key in self._key_value:
+            return self._key_value[key]
+        else:
+            return -1
 
     def put(self, key, value):
         """
