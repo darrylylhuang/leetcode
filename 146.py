@@ -56,43 +56,19 @@ class LRUCache(object):
         :type value: int
         :rtype: None
         """
-        # no space for a new key
-        if key not in self._key_value and len(self._key_value) >= self._capacity:
-            # delete key-value pair
-            pop_key = self._head.key
-            self._key_value.pop(pop_key)
-
-            # remove old key usage data (remove node from linked list)
-            self._head = self._head.next
-
-        # delete existing key from linked list
         if key in self._key_value:
-            node = self._key_value[key]
-            # increment head pointer if we delete head
-            if node is self._head:
-                self._head = self._head.next
-            # decerement tail pointer if we delete tail
-            elif node is self._tail:
-                self._tail = self._tail.prev
-
-            # sever any links
-            if node.prev:
-                node.prev.next = node.next
-            if node.next:
-                node.next.prev = node.prev
-
-        # empty list
-        if not self._head:
-            self._head = ListNode(key, value)
-            self._tail = self._head
-        else:
-            # add new key usage data (most recently used)
-            self._tail.next = ListNode(key, value)
-            self._tail.next.prev = self._tail
-            self._tail = self._tail.next
+            self.remove(self._key_value[key])
 
         # updates old key or adds new key-value if there is space
-        self._key_value[key] = self._tail
+        new_node = ListNode(key, value)
+        self.insert(new_node)
+        self._key_value[key] = new_node
+
+        # no space for a new key
+        if len(self._key_value) > self._capacity:
+            LRU = self._head.next
+            self.remove(LRU)
+            self._key_value.pop(LRU.key)
 
 
 # Your LRUCache object will be instantiated and called as such:
