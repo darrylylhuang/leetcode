@@ -1,6 +1,7 @@
 class ListNode(object):
-    def __init__(self, x):
-        self.val = x
+    def __init__(self, key, value):
+        self.key = key
+        self.val = value
         self.prev = None
         self.next = None
 
@@ -46,7 +47,7 @@ class LRUCache(object):
         # no space for a new key
         if key not in self._key_value and len(self._key_value) >= self._capacity:
             # delete key-value pair
-            pop_key = self._head.val
+            pop_key = self._head.key
             self._key_value.pop(pop_key)
 
             # remove old key usage data (remove node from linked list)
@@ -61,11 +62,11 @@ class LRUCache(object):
                 old_node.next.prev = old_node.prev
 
         if not self._tail:
-            self._head = ListNode(value)
+            self._head = ListNode(key, value)
             self._tail = self._head
         else:
             # add new key usage data (most recently used)
-            self._tail.next = ListNode(value)
+            self._tail.next = ListNode(key, value)
             self._tail.next.prev = self._tail
             self._tail = self._tail.next
 
