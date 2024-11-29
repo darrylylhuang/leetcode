@@ -1,9 +1,7 @@
 class ListNode(object):
     def __init__(self, key, value):
-        self.key = key
-        self.val = value
-        self.prev = None
-        self.next = None
+        self.key, self.val = key, value
+        self.prev = self.next = None
 
 
 class LRUCache(object):
@@ -14,8 +12,9 @@ class LRUCache(object):
         """
         self._capacity = capacity
         self._key_value = dict()
-        self._head = None
-        self._tail = None
+        # dummy head and tail to prevent head/tail deletion
+        self._head = ListNode(0, 0)
+        self._tail = ListNode(0, 0)
 
     def get(self, key):
         """
