@@ -68,12 +68,17 @@ class LRUCache(object):
         # delete existing key from linked list
         if key in self._key_value:
             node = self._key_value[key]
+            # increment head pointer if we delete head
             if node is self._head:
                 self._head = self._head.next
-                # head has no prev
-                node.next.prev = node.prev
-            else:
+            # decerement tail pointer if we delete tail
+            elif node is self._tail:
+                self._tail = self._tail.prev
+
+            # sever any links
+            if node.prev:
                 node.prev.next = node.next
+            if node.next:
                 node.next.prev = node.prev
 
         # empty list
