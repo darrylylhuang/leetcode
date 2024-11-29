@@ -20,8 +20,8 @@ class LRUCache(object):
         """
         :type node: ListNode
         """
-        # delete node
-        return
+        node.prev.next = node.next
+        node.next.prev - node.prev
 
     def insert(self, node):
         """
