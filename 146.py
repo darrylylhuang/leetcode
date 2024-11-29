@@ -49,17 +49,13 @@ class LRUCache(object):
             old_node.prev.next = old_node.next
             old_node.next.prev = old_node.prev
 
-            # add new key usage data (most recently used)
-            new_node = ListNode(value)
-            new_node.prev = self._tail
-            self._tail.next = new_node
-            self._tail = new_node
+        # add new key usage data (most recently used)
+        self._tail.next = ListNode(value)
+        self._tail.next.prev = self._tail
+        self._tail = self._tail.next
 
-            # add new key-value pair
-            self._key_value[key] = new_node
-        else:
-            # updates old key or adds new key-value if there is space
-            self._key_value[key] = value
+        # updates old key or adds new key-value if there is space
+        self._key_value[key] = self._tail
 
 
 # Your LRUCache object will be instantiated and called as such:
