@@ -23,7 +23,7 @@ class LRUCache(object):
         """
         # sever node's ties to delete it from the middle of the list
         node.prev.next = node.next
-        node.next.prev - node.prev
+        node.next.prev = node.prev
 
     def insert(self, node):
         """
