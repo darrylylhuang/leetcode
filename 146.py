@@ -34,9 +34,23 @@ class LRUCache(object):
         :type value: int
         :rtype: None
         """
+        # no space for a new key
         if key not in self._key_value and len(self._key_value) >= self._capacity:
-            # TODO: Evict LRU key
-            return
+            # delete key-value pair
+            pop_key = self._head.val
+            self._key_value.pop(pop_key)
+
+            # remove old key usage data (remove node from linked list)
+            self._head = self._head.next
+
+            # add new key usage data (most recently used)
+            new_node = ListNode(value)
+            new_node.prev = self._tail
+            self._tail.next = new_node
+            self._tail = new_node
+
+            # add new key-value pair
+            self._key_value[key] = new_node
         else:
             # updates old key or adds new key-value if there is space
             self._key_value[key] = value
