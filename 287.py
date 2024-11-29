@@ -10,7 +10,7 @@ class Solution(object):
             slow = nums[slow]
             fast = nums[nums[fast]]
 
-        # r = T = tail length
+        # T = tail length = kC + r
         slow = 0
         while nums[slow] != nums[fast]:
             slow = nums[slow]
