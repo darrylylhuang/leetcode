@@ -16,6 +16,20 @@ class LRUCache(object):
         self._head = ListNode(0, 0)
         self._tail = ListNode(0, 0)
 
+    def remove(self, node):
+        """
+        :type node: ListNode
+        """
+        # delete node
+        return
+
+    def insert(self, node):
+        """
+        :type node: ListNode
+        """
+        # insert node
+        return
+
     def get(self, key):
         """
         :type key: int
