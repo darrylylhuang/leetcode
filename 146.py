@@ -22,11 +22,18 @@ class LRUCache(object):
         :rtype: int
         """
         if key in self._key_value:
-            return self._key_value[key]
+            # upate usage
+            node = self._key_value[key]
+            # delete node from middle of the list
+            node.prev.next = node.next
+            node.next.prev = node.prev
+            # move node to the end of the list
+            self._tail.next = node
+            self._tail = node
+            # return value from key-value pair
+            return node.val
         else:
             return -1
-
-        # TODO: update key usage
 
     def put(self, key, value):
         """
