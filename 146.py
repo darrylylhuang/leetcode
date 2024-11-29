@@ -67,13 +67,17 @@ class LRUCache(object):
 
         # delete existing key from linked list
         if key in self._key_value:
-            old_node = self._key_value[key]
-            if old_node.prev:
-                old_node.prev.next = old_node.next
-            if old_node.next:
-                old_node.next.prev = old_node.prev
+            node = self._key_value[key]
+            if node is self._head:
+                self._head = self._head.next
+                # head has no prev
+                node.next.prev = node.prev
+            else:
+                node.prev.next = node.next
+                node.next.prev = node.prev
 
-        if not self._tail:
+        # empty list
+        if not self._head:
             self._head = ListNode(key, value)
             self._tail = self._head
         else:
