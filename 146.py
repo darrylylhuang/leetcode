@@ -13,8 +13,9 @@ class LRUCache(object):
         self._capacity = capacity
         self._key_value = dict()
         # dummy head and tail to prevent head/tail deletion
-        self._head = ListNode(0, 0)
-        self._tail = ListNode(0, 0)
+        self._head, self._tail = ListNode(0, 0), ListNode(0, 0)
+        self._head.next = self._tail
+        self._tail.prev = self._head
 
     def remove(self, node):
         """
