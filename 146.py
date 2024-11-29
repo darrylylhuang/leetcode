@@ -4,6 +4,8 @@ class LRUCache(object):
         """
         :type capacity: int
         """
+        self._capacity = capacity
+        self._key_value = dict()
 
     def get(self, key):
         """
