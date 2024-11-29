@@ -44,27 +44,8 @@ class LRUCache(object):
         if key in self._key_value:
             # upate usage
             node = self._key_value[key]
-            # node is already MRU so we don't need to change anything
-            if node is self._tail:
-                return node.val
-            # node being the head of the list requires additional logic
-            elif node is self._head:
-                # at this point, we know there is a tail node that is not head (at least 2 nodes)
-                # so we can move the head pointer to the next node in the list
-                self._head = self._head.next
-                # head has no prev
-                node.next.prev = node.prev
-            else:
-                # delete node from middle of the list
-                node.prev.next = node.next
-                node.next.prev = node.prev
-
-            # move node to the end of the list
-            node.next = None
-            node.prev = self._tail
-            self._tail.next = node
-            self._tail = node
-            # return value from key-value pair
+            self.remove(node)
+            self.insert(node)
             return node.val
         else:
             return -1
