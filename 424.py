@@ -6,6 +6,7 @@ class Solution(object):
         :rtype: int
         """
         max_length = 0
+        max_frequency = 0
         l = 0
         char_count = dict()
         for r in range(len(s)):
@@ -13,10 +14,11 @@ class Solution(object):
                 char_count[s[r]] += 1
             else:
                 char_count[s[r]] = 1
+            max_frequency = max(max_frequency, char_count[s[r]])
 
             substring_length = r - l + 1
             # a valid substring of duplicate characters can be created by substituting k letters
-            if substring_length - max(char_count.values()) <= k:
+            if substring_length - max_frequency <= k:
                 # potentially update max length
                 max_length = max(max_length, substring_length)
             else:
