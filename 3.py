@@ -12,7 +12,8 @@ class Solution(object):
                 # possibly new max length
                 max_length = max(max_length, r - l)
                 # move the start of the substring to just after the duplicate character
-                l = max(seen[s[r]] + 1, l + 1)
+                # make sure not to move the left pointer backwards
+                l = max(l, seen[s[r]] + 1)
             seen[s[r]] = r
 
         # final check (substring may run to the end of the string)
