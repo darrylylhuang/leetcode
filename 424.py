@@ -10,9 +10,9 @@ class Solution(object):
         char_count = dict()
         for r in range(len(s)):
             if s[r] in char_count:
-                char_count[r] += 1
+                char_count[s[r]] += 1
             else:
-                char_count[r] = 1
+                char_count[s[r]] = 1
 
             substring_length = r - l + 1
             # a valid substring of duplicate characters can be created by substituting k letters
@@ -22,5 +22,5 @@ class Solution(object):
             else:
                 # move the sliding window
                 l += 1
-                char_count[l] -= 1
+                char_count[s[l]] -= 1
         return max_length
