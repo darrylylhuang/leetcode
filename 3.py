@@ -5,6 +5,7 @@ class Solution(object):
         :rtype: int
         """
         max_length = 0
+        # initialize r = -1 for empty string
         l, r = 0, -1
         seen = dict()
         for r in range(len(s)):
