@@ -21,6 +21,6 @@ class Solution(object):
                 max_length = max(max_length, substring_length)
             else:
                 # move the sliding window
-                l += 1
                 char_count[s[l]] -= 1
+                l += 1
         return max_length
