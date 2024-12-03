@@ -5,15 +5,15 @@ class Solution(object):
         :rtype: int
         """
         max_length = 0
-        start = 0
-        for i in range(1, len(s)):
-            # duplicate letter
-            if s[i] == s[i - 1]:
+        seen = set()
+        for i in range(len(s)):
+            if s[i] in seen:
                 # possibly new max length
-                max_length = max(max_length, i - start)
-                # move start of substring pointer
-                start = i
+                max_length = max(max_length, len(seen))
+                # reset
+                seen = set()
+            seen.add(s[i])
 
         # final check (substring may run to the end of the string)
-        max_length = max(max_length, i - start)
+        max_length = max(max_length, len(seen))
         return max_length
