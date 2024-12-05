@@ -5,3 +5,10 @@ class Solution(object):
         :type target: str
         :rtype: bool
         """
+        L_positions = []
+        R_positions = []
+        for i, char in enumerate(target):
+            if char == 'L':
+                L_positions.append(i)
+            if char == 'R':
+                R_positions.append(i)
