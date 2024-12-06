@@ -5,7 +5,7 @@ class Solution(object):
         :type target: str
         :rtype: bool
         """
-        return self.canChange2(start, target)
+        return self.canChange1(start, target)
 
     def canChange2(self, start, target):
         """
@@ -35,7 +35,7 @@ class Solution(object):
                 obstruction = l
             if char == 'L':
                 leftestL = findL(target, leftestL)
-                if leftestL == -1 or l < leftestL or leftestL < obstruction:
+                if leftestL == -1 or l < leftestL or leftestL <= obstruction:
                     return False
                 obstruction = leftestL
             l += 1
@@ -66,7 +66,7 @@ class Solution(object):
                 obstruction = r
             if char == 'R':
                 rightestR = findR(target, rightestR)
-                if rightestR == -1 or r > rightestR or rightestR > obstruction:
+                if rightestR == -1 or r > rightestR or rightestR >= obstruction:
                     return False
                 obstruction = rightestR
             r -= 1
@@ -110,7 +110,7 @@ class Solution(object):
                 if i < L_positions[0]:
                     return False
                 # something is blocking the L piece in start from moving to its correct position in target
-                elif L_positions[0] < obstruction:
+                elif L_positions[0] <= obstruction:
                     return False
                 # L is unobstructed from moving to its correct position in target
                 else:
@@ -138,7 +138,7 @@ class Solution(object):
                 if i > R_positions[-1]:
                     return False
                 # something is blocking the R piece in start from moving to its correct position in target
-                elif obstruction < R_positions[-1]:
+                elif obstruction <= R_positions[-1]:
                     return False
                 # R is unobstructed from moving to its correct position in target
                 else:
@@ -150,3 +150,8 @@ class Solution(object):
             return False
 
         return True
+
+
+start = "_L__R__RL"
+target = "L_____RLR"
+print(Solution().canChange(start, target))
