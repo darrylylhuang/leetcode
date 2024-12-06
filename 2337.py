@@ -49,3 +49,5 @@ class Solution(object):
                 end[R_positions[-1]] = "R"
                 end[i] = "_"
                 L_positions.pop()
+
+        return True
