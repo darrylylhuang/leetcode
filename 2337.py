@@ -5,6 +5,24 @@ class Solution(object):
         :type target: str
         :rtype: bool
         """
+        return self.canChange1(start, target)
+
+    def canChange2(self, start, target):
+        """
+        :type start: str
+        :type target: str
+        :rtype: bool
+        """
+        return True
+
+    def canChange1(self, start, target):
+        """
+        Determines validity by mapping target's L and R piece positions, then
+        constructing that result from the characters in start
+        :type start: str
+        :type target: str
+        :rtype: bool
+        """
         L_positions = []
         R_positions = []
         for i, char in enumerate(target):
