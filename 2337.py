@@ -24,7 +24,7 @@ class Solution(object):
                 obstruction = i
             elif char == 'L':
                 # there are too many L pieces in start to match target
-                if not L_positions[0]:
+                if not L_positions:
                     return False
                 # the L piece in start is further left than the L piece in target
                 if i < L_positions[0]:
