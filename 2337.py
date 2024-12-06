@@ -31,3 +31,21 @@ class Solution(object):
                 end[L_positions[0]] = "L"
                 end[i] = "_"
                 L_positions.pop(0)
+
+        # handle R
+        obstruction = len(target)
+        for i in range(len(target) - 1, -1, -1):
+            char = end[i]
+            if char == 'L':
+                obstruction = i
+            # the R piece in start is further right than the R piece in target
+            elif char == 'R' and i > R_positions[-1]:
+                return False
+            # something is blocking the R piece in start from moving to its correct position in target
+            elif obstruction < R_positions[-1]:
+                return False
+            # R is unobstructed from moving to its correct position in target
+            else:
+                end[R_positions[-1]] = "R"
+                end[i] = "_"
+                L_positions.pop()
