@@ -150,8 +150,3 @@ class Solution(object):
             return False
 
         return True
-
-
-start = "_L__R__RL"
-target = "L_____RLR"
-print(Solution().canChange(start, target))
