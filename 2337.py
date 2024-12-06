@@ -5,7 +5,7 @@ class Solution(object):
         :type target: str
         :rtype: bool
         """
-        return self.canChange1(start, target)
+        return self.canChange2(start, target)
 
     def canChange2(self, start, target):
         """
@@ -40,6 +40,10 @@ class Solution(object):
                 obstruction = leftestL
             l += 1
 
+        # There are L pieces left to move in target
+        if findL(target, leftestL) != -1:
+            return False
+
         # handle R
         def findR(target, lastR):
             """
@@ -66,6 +70,10 @@ class Solution(object):
                     return False
                 obstruction = rightestR
             r -= 1
+
+        # There are R pieces left to move in target
+        if findR(target, rightestR) != -1:
+            return False
 
         return True
 
