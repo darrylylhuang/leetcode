@@ -23,6 +23,9 @@ class Solution(object):
             elif char == 'R':
                 obstruction = i
             elif char == 'L':
+                # there are too many L pieces in start to match target
+                if not L_positions[0]:
+                    return False
                 # the L piece in start is further left than the L piece in target
                 if i < L_positions[0]:
                     return False
@@ -34,6 +37,9 @@ class Solution(object):
                     end[L_positions[0]] = "L"
                     end[i] = "_"
                     L_positions.pop(0)
+        # there were too few L pieces in start; or not enough could be moved
+        if L_positions:
+            return False
 
         # handle R
         obstruction = len(target)
@@ -45,6 +51,9 @@ class Solution(object):
                 obstruction = i
             # the R piece in start is further right than the R piece in target
             elif char == 'R':
+                # there are too many R pieces in start to match target
+                if not R_positions:
+                    return False
                 if i > R_positions[-1]:
                     return False
                 # something is blocking the R piece in start from moving to its correct position in target
@@ -55,5 +64,8 @@ class Solution(object):
                     end[R_positions[-1]] = "R"
                     end[i] = "_"
                     L_positions.pop()
+        # there were too few R pieces in start; or not enough could be moved
+        if R_positions:
+            return False
 
         return True
