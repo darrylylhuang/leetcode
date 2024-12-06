@@ -14,19 +14,6 @@ class Solution(object):
         :rtype: bool
         """
         # handle L
-        l = obstruction = leftestL = -1
-        l += 1
-        while l < len(start):
-            char = start[l]
-            if char == 'R':
-                obstruction = l
-            if char == 'L':
-                leftestL = findL(target, leftestL)
-                if leftestL == -1 or l < leftestL or leftestL < obstruction:
-                    return False
-                obstruction = leftestL
-            l += 1
-
         def findL(target, lastL):
             """
             Finds the index of the next L in target given the last one found
@@ -40,20 +27,20 @@ class Solution(object):
                 l += 1
             return -1
 
-        # handle R
-        r = obstruction = rightestR = len(target)
-        r -= 1
-        while r > -1:
-            char = start[r]
-            if char == 'L':
-                obstruction = r
+        l = obstruction = leftestL = -1
+        l += 1
+        while l < len(start):
+            char = start[l]
             if char == 'R':
-                rightestR = findR(target, rightestR)
-                if rightestR == -1 or r > rightestR or rightestR > obstruction:
+                obstruction = l
+            if char == 'L':
+                leftestL = findL(target, leftestL)
+                if leftestL == -1 or l < leftestL or leftestL < obstruction:
                     return False
-                obstruction = rightestR
-            r -= 1
+                obstruction = leftestL
+            l += 1
 
+        # handle R
         def findR(target, lastR):
             """
             Finds the index of the next R in target given the last one found
@@ -66,6 +53,19 @@ class Solution(object):
                     return r
                 r -= 1
             return -1
+
+        r = obstruction = rightestR = len(target)
+        r -= 1
+        while r > -1:
+            char = start[r]
+            if char == 'L':
+                obstruction = r
+            if char == 'R':
+                rightestR = findR(target, rightestR)
+                if rightestR == -1 or r > rightestR or rightestR > obstruction:
+                    return False
+                obstruction = rightestR
+            r -= 1
 
         return True
 
