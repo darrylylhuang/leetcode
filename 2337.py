@@ -14,9 +14,8 @@ class Solution(object):
         :rtype: bool
         """
         # handle L
-        l = 0
-        obstruction = -1
-        leftestL = -1
+        l = obstruction = leftestL = -1
+        l += 1
         while l < len(start):
             char = start[l]
             if char == 'R':
@@ -32,12 +31,40 @@ class Solution(object):
             """
             Finds the index of the next L in target given the last one found
             If no next L is found, return -1
+            Scans left to right
             """
             l = lastL + 1
-            while lastL < len(target):
+            while l < len(target):
                 if target[l] == 'L':
                     return l
                 l += 1
+            return -1
+
+        # handle R
+        r = obstruction = rightestR = len(target)
+        r -= 1
+        while r > -1:
+            char = start[r]
+            if char == 'L':
+                obstruction = r
+            if char == 'R':
+                rightestR = findR(target, rightestR)
+                if rightestR == -1 or r > rightestR or rightestR > obstruction:
+                    return False
+                obstruction = rightestR
+            r -= 1
+
+        def findR(target, lastR):
+            """
+            Finds the index of the next R in target given the last one found
+            If no next R is found, return -1
+            Scans right to left
+            """
+            r = lastR - 1
+            while r > -1:
+                if target[r] == 'R':
+                    return r
+                r -= 1
             return -1
 
         return True
