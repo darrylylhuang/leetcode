@@ -8,8 +8,9 @@ class Solution(object):
         """
         sum = 0
         ints = 0
+        banned_set = {x for x in banned if x <= n}
         for i in range(1, n + 1):
-            if i in banned:
+            if i in banned_set:
                 continue
 
             sum += i
