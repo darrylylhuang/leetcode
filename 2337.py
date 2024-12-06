@@ -34,8 +34,8 @@ class Solution(object):
                     return False
                 # L is unobstructed from moving to its correct position in target
                 else:
-                    end[L_positions[0]] = "L"
                     end[i] = "_"
+                    end[L_positions[0]] = "L"
                     L_positions.pop(0)
         # there were too few L pieces in start; or not enough could be moved
         if L_positions:
@@ -54,6 +54,7 @@ class Solution(object):
                 # there are too many R pieces in start to match target
                 if not R_positions:
                     return False
+                # the R piece in start is further right than the R piece in target
                 if i > R_positions[-1]:
                     return False
                 # something is blocking the R piece in start from moving to its correct position in target
@@ -61,8 +62,8 @@ class Solution(object):
                     return False
                 # R is unobstructed from moving to its correct position in target
                 else:
-                    end[R_positions[-1]] = "R"
                     end[i] = "_"
+                    end[R_positions[-1]] = "R"
                     L_positions.pop()
         # there were too few R pieces in start; or not enough could be moved
         if R_positions:
