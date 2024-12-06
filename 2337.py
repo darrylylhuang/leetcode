@@ -64,7 +64,7 @@ class Solution(object):
                 else:
                     end[i] = "_"
                     end[R_positions[-1]] = "R"
-                    L_positions.pop()
+                    R_positions.pop()
         # there were too few R pieces in start; or not enough could be moved
         if R_positions:
             return False
