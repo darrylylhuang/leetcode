@@ -13,6 +13,33 @@ class Solution(object):
         :type target: str
         :rtype: bool
         """
+        # handle L
+        l = 0
+        obstruction = -1
+        leftestL = -1
+        while l < len(start):
+            char = start[l]
+            if char == 'R':
+                obstruction = l
+            if char == 'L':
+                leftestL = findL(target, leftestL)
+                if leftestL == -1 or l < leftestL or leftestL < obstruction:
+                    return False
+                obstruction = leftestL
+            l += 1
+
+        def findL(target, lastL):
+            """
+            Finds the index of the next L in target given the last one found
+            If no next L is found, return -1
+            """
+            l = lastL + 1
+            while lastL < len(target):
+                if target[l] == 'L':
+                    return l
+                l += 1
+            return -1
+
         return True
 
     def canChange1(self, start, target):
