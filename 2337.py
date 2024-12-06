@@ -5,10 +5,50 @@ class Solution(object):
         :type target: str
         :rtype: bool
         """
-        return self.canChange1(start, target)
+        return self.canChange3(start, target)
+
+    def canChange3(self, start, target):
+        """
+        Utilizes the fact that pieces cannot cross each other to do a single pass through
+        both input strings; find matching pieces and determine whether target's position can be achieved
+        from start's position
+        :type start: str
+        :type target: str
+        :rtype: bool
+        """
+        n = len(start)
+        i = j = 0
+        # add stop characters to prevent one of the strings from ending the loop early without checking validity
+        start += '\0'
+        target += '\0'
+        while i < n or j < n:
+            # skip empty spaces in start
+            while i < n and start[i] == '_':
+                i += 1
+            # skip empty spaces in target
+            while j < n and target[j] == '_':
+                j += 1
+
+            piece = start[i]
+            # pieces are not equivalent; this is impossible since pieces cannot cross each other
+            if piece != target[j]:
+                return False
+            # L pieces cannot move to the right
+            elif piece == 'L' and i < j:
+                return False
+            # R pieces cannot move to the left
+            elif piece == 'R' and i > j:
+                return False
+
+            i += 1
+            j += 1
+
+        return True
 
     def canChange2(self, start, target):
         """
+        Uses helper functions to find the next piece position in target
+        Traverses start forwards and backwards to simulate movement of pieces
         :type start: str
         :type target: str
         :rtype: bool
